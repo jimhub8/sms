@@ -30,7 +30,7 @@
                         <v-icon>mdi-restore</v-icon> Reset
                     </v-btn>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" @click="send" text>
+                    <v-btn color="primary" @click="send" text :loading="loading" :disabled="loading">
                         <v-icon>mdi-send</v-icon> Send
                     </v-btn>
                 </v-card-actions>
@@ -65,6 +65,7 @@ export default {
             this.errors = []
             this.loading = true
             axios.post('/sms', this.form).then((response) => {
+                this.reset()
                 this.loading = false
                 this.message = 'Sms sent'
                 this.snackbar = true

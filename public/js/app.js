@@ -2061,6 +2061,8 @@ __webpack_require__.r(__webpack_exports__);
       this.errors = [];
       this.loading = true;
       axios.post('/sms', this.form).then(function (response) {
+        _this.reset();
+
         _this.loading = false;
         _this.message = 'Sms sent';
         _this.snackbar = true;
@@ -20564,7 +20566,12 @@ var render = function() {
                           _c(
                             "v-btn",
                             {
-                              attrs: { color: "primary", text: "" },
+                              attrs: {
+                                color: "primary",
+                                text: "",
+                                loading: _vm.loading,
+                                disabled: _vm.loading
+                              },
                               on: { click: _vm.send }
                             },
                             [
@@ -76617,7 +76624,7 @@ module.exports = function(module) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vuetify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vuetify */ "./resources/js/vuetify.js");
-/* harmony import */ var _components_sms_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/sms.vue */ "./resources/js/components/sms.vue");
+/* harmony import */ var _components_sms_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/sms.vue */ "./resources/js/components/sms.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -76641,7 +76648,7 @@ var app = new Vue({
   // token: csrf_token,
   vuetify: _vuetify__WEBPACK_IMPORTED_MODULE_0__["default"],
   components: {
-    mySms: _components_sms_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    mySms: _components_sms_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
 
