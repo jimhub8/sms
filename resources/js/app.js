@@ -1,34 +1,47 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
+
+require('alpinejs');
+
 
 window.Vue = require('vue');
 
 window.eventBus = new Vue()
 
+import ElementUI from 'element-ui';
+import locale from 'element-ui/lib/locale/lang/en'
+import 'element-ui/lib/theme-chalk/index.css';
+import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 import vuetify from './vuetify'
 
+import VueRouter from 'vue-router'
 
-import mySms from './components/sms.vue'
+Vue.use(VueRouter)
+Vue.use(ElementUI, { locale });
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
 
-// Vue.prototype.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
+import myCallcenter from './components/callcenter'
+import myRider from './components/riders'
+
+import mySms from './components/sms'
+
+
+
+const routes = [
+    { path: '/', component: myCallcenter },
+    { path: '/rider', component: myRider },
+]
+const router = new VueRouter({
+    // mode: 'history',
+    routes // short for `routes: routes`
+})
+
 
 const app = new Vue({
     el: '#app',
     // token: csrf_token,
     vuetify,
+    router,
     components: {
-        mySms
+        myCallcenter, myRider, mySms
     },
-
 });

@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Voice;
-// use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,29 +13,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
+    return view('sms');
+});
+
+Route::get('/portal', function () {
     return view('welcome');
 });
 
-
-// Route::post('/call', 'VoiceController@initiateCall')->name('initiate_call');
-// Route::post('incoming/call', 'IncomingCallController@incoming')->name('incoming');
-
-Route::resource('incoming', 'IncomingCallController');
-
-
-// Route::view('/', 'call');
-Route::any('/call', 'VoiceController@initiateCall_twilio')->name('initiate_call');
-
-
-Route::get('/twilio_token', 'VoiceController@twilio_token')->name('twilio_token');
-Route::get('/dial_call', 'VoiceController@dial_call')->name('dial_call');
-
-
-Route::get('/voice_data', 'VoiceController@voice_data')->name('voice_data');
-Route::get('/incoming_call', 'VoiceController@incoming')->name('incoming');
-
-
-Route::post('twilio/incoming/digits', 'ProcessIVRDigitsController');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
 Route::post('sms', 'SmsController@sms')->name('sms');
+
+Route::resource('report', 'CallcenterController');
+Route::resource('riders', 'RiderController');
+Route::post('filter', 'CallcenterController@filter')->name('filter');
+Route::post('rider_filter', 'RiderController@rider_filter')->name('rider_filter');
+
+
+Route::any('export', 'CallcenterController@export')->name('export');
+Route::any('rider_report', 'RiderController@export')->name('export');
