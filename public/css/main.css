@@ -1,0 +1,12 @@
+.el-button {
+    color: #fff !important;
+}
+.mdi-file-excel {
+    color: #000;
+}
+.v-btn {
+    text-transform: capitalize !important;
+}
+.v-sheet {
+    max-height: 64px !important;
+}

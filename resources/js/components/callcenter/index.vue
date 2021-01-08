@@ -1,13 +1,26 @@
 <template>
 <el-card class="box-card" style="width: 40%; margin: auto">
-    <el-tabs v-model="activeName" @tab-click="handleClick">
-        <el-tab-pane label="Create" name="first">
-            <myCreate :clients="clients" />
-        </el-tab-pane>
-        <el-tab-pane label="Display" name="second">
-            <myShow :clients="clients" />
-        </el-tab-pane>
-    </el-tabs>
+    <v-app>
+        <v-toolbar color="primary" dark>
+
+            <v-toolbar-title>Call center report</v-toolbar-title>
+
+            <v-spacer></v-spacer>
+
+            <router-link to="/rider">
+                <v-btn text>Rider</v-btn>
+            </router-link>
+
+        </v-toolbar>
+        <el-tabs v-model="activeName" @tab-click="handleClick">
+            <el-tab-pane label="Create" name="first">
+                <myCreate :clients="clients" />
+            </el-tab-pane>
+            <el-tab-pane label="Display" name="second">
+                <myShow :clients="clients" />
+            </el-tab-pane>
+        </el-tabs>
+    </v-app>
 </el-card>
 </template>
 
@@ -21,7 +34,7 @@ export default {
     },
     data() {
         return {
-            activeName: 'second',
+            activeName: 'first',
             clients: [{
                     value: "2wtrade",
                 },
