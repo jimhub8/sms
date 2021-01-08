@@ -18,7 +18,7 @@ class CreateRidersTable extends Migration
             $table->integer('total_orders');
             $table->integer('delivered');
             $table->integer('returned');
-            $table->text('comment');
+            $table->text('comment')->nullable();
             $table->string('rider');
             // $table->text('data');
             $table->date('date');
