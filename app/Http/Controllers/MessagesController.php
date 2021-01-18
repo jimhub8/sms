@@ -41,7 +41,7 @@ class MessagesController extends Controller
         foreach ($messages as $message) {
             $sms = new Sms();
             $message_ = 'Dear ' . $message->name  . ' We trust you are good. This is to register our utmost apology for not making your delivery today for the order you placed online for Electric vacuum foot cleaner. This is as a result of flight delay from Dubai hence goods are expected to arrive by Thursday, 21/01/2021. We therefore request to make your delivery between Friday, 22/01/2021 to Monday, 25/01/2020. Thank you.';
-            $sms->sms($message->phone, $message_);
+            // $sms->sms($message->phone, $message_);
         }
         return;
     }
