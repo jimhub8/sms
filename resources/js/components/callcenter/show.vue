@@ -4,11 +4,16 @@
         <span>Call center report</span>
         <!-- <el-button style="float: right; padding: 3px 0" type="text">Operation button</el-button> -->
     </div>
-    <div class="text item">
+    <!-- <div class="text item">
         <label for="">Date Range</label>
         <el-select v-model="form.date" placeholder="Select" style="width: 100%" allow-create filterable clearable>
             <el-option v-for="(item, index) in date_options" :key="index" :label="item" :value="item"></el-option>
         </el-select>
+    </div> -->
+    <div>
+        <label for="">Start Date</label>
+        <el-date-picker v-model="form.date" type="date" placeholder="Pick a day" style="width: 100%" format="yyyy/MM/dd" value-format="yyyy-MM-dd">
+        </el-date-picker>
     </div>
     <div class="text item">
         <label for="">Client</label>

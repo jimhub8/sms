@@ -19,8 +19,8 @@ class CreateCallcentersTable extends Migration
             $table->integer('total_orders');
             $table->text('comment')->nullable();
             $table->text('data');
-            $table->date('start_date');
-            $table->date('end_date');
+            // $table->date('start_date');
+            $table->date('report_date');
             $table->timestamps();
         });
     }

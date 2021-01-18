@@ -47,8 +47,8 @@ class CallcenterController extends Controller
 
         return Callcenter::updateOrCreate(
             [
-                'start_date' => $request->start_date,
-                'end_date' => $request->end_date,
+                // 'start_date' => $request->start_date,
+                'report_date' => $request->report_date,
                 'client' => $request->client
             ],
             [
@@ -82,11 +82,12 @@ class CallcenterController extends Controller
     {
         // return $request->all();
 
-        $date_array = explode(' : ', $request->date);
+        // $date_array = explode(' : ', $request->date);
 
-        // $start_date =
+        $date = $request->date;
+        // $end_date = $request->end_date;
 
-        $report = Callcenter::where('client', $request->client)->where('start_date', $date_array[0])->where('end_date', $date_array[1])->get();
+        $report = Callcenter::where('client', $request->client)->where('report_date', $date)->get();
         if (count($report) > 0) {
             return $report[0];
         } else {

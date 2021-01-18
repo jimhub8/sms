@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<router-view />
+<v-app>
+    {{-- <router-view /> --}}
+    <my-header></my-header>
+    <my-app/>
+</v-app>
 @endsection

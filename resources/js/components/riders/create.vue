@@ -125,10 +125,8 @@ export default {
             axios.post('riders', this.form).then((response) => {
                 console.log(response);
                 this.loading = false
-                this.$message({
-                    message: 'Report submited',
-                    type: 'success'
-                });
+                eventBus.$emit('alertMessageEvent')
+
             }).catch((error) => {
                 this.loading = false
                 console.log(error);

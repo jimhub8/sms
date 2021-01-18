@@ -12,6 +12,7 @@ import locale from 'element-ui/lib/locale/lang/en'
 import 'element-ui/lib/theme-chalk/index.css';
 import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 import vuetify from './vuetify'
+import store from './vuex'
 
 import VueRouter from 'vue-router'
 
@@ -23,12 +24,29 @@ import myCallcenter from './components/callcenter'
 import myRider from './components/riders'
 
 import mySms from './components/sms'
+import mySmsMult from './components/sms/multiple.vue'
 
+
+import myApp from './components/agents'
+import myHeader from './components/inc/Header'
+
+
+import myAgents from './components/agents/account'
+import myProducts from './components/agents/product'
+import myStock from './components/agents/stock'
+import myvendors from './components/agents/vendor'
 
 
 const routes = [
     { path: '/', component: myCallcenter },
     { path: '/rider', component: myRider },
+    { path: '/agents', component: myAgents },
+    { path: '/products', component: myProducts },
+    { path: '/stock', component: myStock },
+    { path: '/vendors', component: myvendors },
+
+    { path: '/sms', component: mySmsMult },
+
 ]
 const router = new VueRouter({
     // mode: 'history',
@@ -39,9 +57,10 @@ const router = new VueRouter({
 const app = new Vue({
     el: '#app',
     // token: csrf_token,
+    store,
     vuetify,
     router,
-    components: {
-        myCallcenter, myRider, mySms
+    components: {myApp,myHeader,
+        myCallcenter, myRider, mySms, myAgents, myProducts, myStock, myvendors, mySmsMult
     },
 });

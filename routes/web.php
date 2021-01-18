@@ -36,3 +36,17 @@ Route::post('rider_filter', 'RiderController@rider_filter')->name('rider_filter'
 
 Route::any('export', 'CallcenterController@export')->name('export');
 Route::any('rider_report', 'RiderController@export')->name('export');
+
+Route::get('messages_send', 'MessagesController@messages_send')->name('messages_send');
+Route::post('stock_filter', 'StockController@stock_filter')->name('stock_filter');
+
+
+Route::resource('agents', 'AgentController');
+Route::resource('products', 'ProductController');
+Route::resource('stock', 'StockController');
+Route::resource('vendors', 'VendorController');
+
+Route::resource('messages', 'MessagesController');
+
+
+Route::get('opening_stock/{id}', 'StockController@opening_stock')->name('opening_stock');

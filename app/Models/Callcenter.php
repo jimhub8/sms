@@ -15,8 +15,8 @@ class Callcenter extends Model
         'total_orders',
         'comment',
         'data',
-        'start_date',
-        'end_date'
+        // 'start_date',
+        'report_date'
     ];
 
     public function setDataAttribute($value)

@@ -4,18 +4,20 @@
         <span>Call center report</span>
         <!-- <el-button style="float: right; padding: 3px 0" type="text">Operation button</el-button> -->
     </div>
-    <el-row :gutter="20">
-        <el-col :span="12">
-            <label for="">Start Date</label>
-            <el-date-picker v-model="form.start_date" type="date" placeholder="Pick a day" style="width: 100%" format="yyyy/MM/dd" value-format="yyyy-MM-dd">
-            </el-date-picker>
-        </el-col>
-        <el-col :span="12">
+    <!-- <el-row :gutter="20"> -->
+    <!-- <el-col :span="24"> -->
+    <div>
+        <label for="">Start Date</label>
+        <el-date-picker v-model="form.report_date" type="date" placeholder="Pick a day" style="width: 100%" format="yyyy/MM/dd" value-format="yyyy-MM-dd">
+        </el-date-picker>
+    </div>
+    <!-- </el-col> -->
+    <!-- <el-col :span="12">
             <label for="">End Date</label>
             <el-date-picker v-model="form.end_date" type="date" placeholder="Pick a day" style="width: 100%" format="yyyy/MM/dd" value-format="yyyy-MM-dd">
             </el-date-picker>
-        </el-col>
-    </el-row>
+        </el-col> -->
+    <!-- </el-row> -->
     <div class="text item">
         <label for="">Client</label>
         <el-select v-model="form.client" placeholder="Select" style="width: 100%" allow-create filterable clearable>
@@ -33,7 +35,7 @@
         <el-input type="textarea" placeholder="Please input" v-model="form.comment"></el-input>
     </div>
 
-    <el-table :data="tableData" border style="width: 100%;margin-top: 20px">
+    <el-table :data="tableData" border style="width: 100%; margin-top: 20px">
         <el-table-column prop="status" label="Status" width="180">
             <template slot-scope="scope">
                 <el-select v-model="scope.row.status" placeholder="Select" style="width: 100%" allow-create filterable clearable>
@@ -48,7 +50,11 @@
         </el-table-column>
         <el-table-column prop="action" label="Percentage" width="100">
             <template slot-scope="scope">
-                {{ parseFloat(parseInt(scope.row.count) / parseInt(form.total_orders) * 100).toFixed(2) }}%
+                {{
+            parseFloat(
+              (parseInt(scope.row.count) / parseInt(form.total_orders)) * 100
+            ).toFixed(2)
+          }}%
             </template>
         </el-table-column>
         <el-table-column prop="action" label="Remove" width="100">
@@ -59,17 +65,16 @@
     </el-table>
 
     <el-button type="primary" icon="el-icon-plus" @click="add_new" style="margin: 5px 0">Add aother row</el-button>
-    <hr>
+    <hr />
     <div class="bottom clearfix" style="margin-top: 30px">
-
-        <el-button type="primary" :loading="loading" :disabled="loading" @click="send_report" style="float: right">Generate report</el-button>
+        <el-button type="primary" :loading="loading" :disabled="loading" @click="send_report" style="float: right">Submit report</el-button>
     </div>
 </el-card>
 </template>
 
 <script>
 export default {
-    props: ['clients'],
+    props: ["clients"],
     data() {
         return {
             options: [{
@@ -103,40 +108,39 @@ export default {
             ],
             form: {},
             tableData: [{
-                status: '',
-                count: 0
-            }],
-            loading: false
+                status: "",
+                count: 0,
+            }, ],
+            loading: false,
         };
     },
     methods: {
         add_new() {
             this.tableData.push({
-                status: '',
-                count: 0
-            })
+                status: "",
+                count: 0,
+            });
         },
         deleteRow(index) {
-            this.tableData.splice(index, 1)
+            this.tableData.splice(index, 1);
         },
         send_report() {
-            this.loading = true
-            this.form.data = this.tableData
+            this.loading = true;
+            this.form.data = this.tableData;
 
-            axios.post('report', this.form).then((response) => {
-                console.log(response);
-                this.loading = false
-                this.$message({
-                    message: 'Report sent',
-                    type: 'success'
+            axios
+                .post("report", this.form)
+                .then((response) => {
+                    console.log(response);
+                    this.loading = false;
+                    eventBus.$emit("alertMessageEvent");
+                })
+                .catch((error) => {
+                    this.loading = false;
+                    console.log(error);
                 });
-            }).catch((error) => {
-                this.loading = false
-                console.log(error);
-            })
         },
     },
-
 };
 </script>
 

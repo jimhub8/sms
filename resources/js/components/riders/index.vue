@@ -1,7 +1,7 @@
 <template>
 <el-card class="box-card" style="width: 40%; margin: auto">
-    <v-app>
-        <v-toolbar color="primary" dark>
+    <!-- <v-app> -->
+        <!-- <v-toolbar color="primary" dark>
 
             <v-toolbar-title>Rider Perfomance</v-toolbar-title>
 
@@ -11,7 +11,7 @@
                 <v-btn text>Call Center</v-btn>
             </router-link>
 
-        </v-toolbar>
+        </v-toolbar> -->
         <el-tabs v-model="activeName" @tab-click="handleClick">
             <el-tab-pane label="Create" name="first">
                 <myCreate :riders="riders" />
@@ -20,7 +20,7 @@
                 <myShow :riders="riders" />
             </el-tab-pane>
         </el-tabs>
-    </v-app>
+    <!-- </v-app> -->
 </el-card>
 </template>
 
