@@ -10,6 +10,13 @@
                 <v-container grid-list-md>
                     <v-layout row wrap>
                         <v-flex sm6>
+                            <label for="">Product</label>
+                            <el-select v-model="form.product_id" placeholder="Select" style="width: 100%" @change="getOpeningStock">
+                                <el-option v-for="item in products" :key="item.id" :label="item.name" :value="item.id">
+                                </el-option>
+                            </el-select>
+                        </v-flex>
+                        <v-flex sm6>
                             <label for="">Stock Date</label>
                             <el-date-picker v-model="form.stock_date" type="date" placeholder="Pick a Date" format="yyyy/MM/dd" value-format="yyyy-MM-dd" style="width: 100%" disabled>
                             </el-date-picker>
@@ -71,7 +78,8 @@ export default {
     created() {
         eventBus.$on("openCreateStock", data => {
             this.dialog = true;
-            this.getOpeningStock()
+            this.getProducts()
+            // this.getOpeningStock()
         });
     },
 
@@ -93,9 +101,10 @@ export default {
                 })
         },
 
-        getOpeningStock() {
+        getOpeningStock(e) {
+            console.log(e);
             var payload = {
-                model: 'opening_stock/1',
+                model: 'opening_stock/' + e,
                 update: 'updateOpeningStock'
             }
             this.$store.dispatch("getItems", payload).then((response) => {
@@ -109,12 +118,20 @@ export default {
             })
         },
 
+        getProducts() {
+            var payload = {
+                model: 'products',
+                update: 'updateProducts'
+            }
+            this.$store.dispatch("getItems", payload);
+        },
+
         close() {
             this.dialog = false;
         }
     },
     computed: {
-        ...mapState(['errors', 'opening_stock']),
+        ...mapState(['errors', 'opening_stock', 'products']),
         closing_stock() {
             return parseInt(this.form.opening_stock) + parseInt(this.form.received) - parseInt(this.form.delivered) - parseInt(this.form.returned)
         }
