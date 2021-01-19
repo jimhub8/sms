@@ -18,6 +18,14 @@
                 </div>
             </div>
 
+
+
+
+
+
+
+
+
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-jet-dropdown align="right" width="48">
@@ -58,6 +66,14 @@
                         <div class="border-t border-gray-100"></div>
 
                         <!-- Team Management -->
+
+
+
+
+
+
+
+
                         @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Manage Team') }}
@@ -68,11 +84,11 @@
                                 {{ __('Team Settings') }}
                             </x-jet-dropdown-link>
 
-                            @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
+                            {{-- @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
                                 <x-jet-dropdown-link href="{{ route('teams.create') }}">
                                     {{ __('Create New Team') }}
                                 </x-jet-dropdown-link>
-                            @endcan
+                            @endcan --}}
 
                             <div class="border-t border-gray-100"></div>
 
@@ -87,6 +103,15 @@
 
                             <div class="border-t border-gray-100"></div>
                         @endif
+
+
+
+
+
+
+
+
+
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -113,6 +138,15 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
