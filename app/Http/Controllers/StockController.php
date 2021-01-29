@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Stock;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class StockController extends Controller
@@ -27,27 +28,31 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
-        $stock_date = Carbon::parse($request->stock_date)->format('yy-m-d');
-        // return $request->all();
-        // return Stock::create($request->all());
+        if (Auth::guard('agent')->check()) {
+            $stock_date = Carbon::parse($request->stock_date)->format('yy-m-d');
+            // return $request->all();
+            // return Stock::create($request->all());
 
-        $stock_exists = Stock::where('stock_date', $stock_date)->where('agent_id', 1)->exists();
-        if($stock_exists) {
-            abort(403, "You already updated today's stock");
+            $stock_exists = Stock::where('stock_date', $stock_date)->where('agent_id', 1)->exists();
+            if ($stock_exists) {
+                abort(403, "You already updated today's stock");
+            }
+            return Stock::updateOrCreate(
+                [
+                    'stock_date' => $stock_date,
+                    'agent_id' => 1
+                ],
+                [
+                    'closing_stock' => $request->closing_stock,
+                    'delivered' => $request->delivered,
+                    'opening_stock' => $request->opening_stock,
+                    'received' => $request->received,
+                    'returned' => $request->returned,
+                ]
+            );
+        } else {
+                abort(403, "Please log in as an agent");
         }
-        return Stock::updateOrCreate(
-            [
-                'stock_date' => $stock_date,
-                'agent_id' => 1
-            ],
-            [
-                'closing_stock' => $request->closing_stock,
-                'delivered' => $request->delivered,
-                'opening_stock' => $request->opening_stock,
-                'received' => $request->received,
-                'returned' => $request->returned,
-            ]
-        );
     }
 
     /**
@@ -99,14 +104,14 @@ class StockController extends Controller
     public function stock_filter(Request $request)
     {
         $start_date = $request->start_date;
-         $end_date = $request->end_date;
+        $end_date = $request->end_date;
         //  DB::connection()->enableQueryLog();
 
         $agent = Stock::with('agent');
         if ($request->agent_id) {
             $agent = $agent->where('agent_id', $request->agent_id);
         }
-        if($start_date && $end_date) {
+        if ($start_date && $end_date) {
             $agent = $agent->whereBetween('created_at', [$start_date, $end_date]);
         }
         return $agent->paginate(100);

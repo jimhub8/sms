@@ -29,10 +29,14 @@ class RiderController extends Controller
         // return $request->all();
         // return Rider::create($request->all());
 
+        $this->Validate($request, [
+            'rider' => 'required',
+            'total_orders' => 'required'
+        ]);
 
         return Rider::updateOrCreate(
             [
-                'date' => $request->date,
+                'date' => Carbon::parse($request->date),
                 'rider' => $request->rider
             ],
             [

@@ -40,10 +40,11 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
     data: () => ({
         dialog: false,
-        loading: false,
+        // loading: false,
         form: {},
         errors: {},
         payload: {
@@ -77,6 +78,9 @@ export default {
         close() {
             this.dialog = false;
         }
+    },
+    computed: {
+        ...mapState(['loading']),
     },
 };
 </script>

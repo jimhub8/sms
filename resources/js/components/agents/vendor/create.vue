@@ -36,7 +36,6 @@ import {
 export default {
     data: () => ({
         dialog: false,
-        loading: false,
         form: {},
     }),
     created() {
@@ -62,7 +61,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(['errors'])
+        ...mapState(['errors', 'loading'])
     },
 };
 </script>

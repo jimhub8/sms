@@ -7,6 +7,7 @@ export default {
         page_loader: false,
         loading: false,
         errors: [],
+        users: [],
         agents: [],
         products: [],
         vendors: [],

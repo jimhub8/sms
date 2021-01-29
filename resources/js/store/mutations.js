@@ -20,6 +20,9 @@ export default {
         state.products = payload
     },
 
+    updateUsers(state, payload) {
+        state.users = payload
+    },
     updateVendors(state, payload) {
         state.vendors = payload
     },

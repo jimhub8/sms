@@ -1,8 +1,5 @@
 <?php
-
-namespace Database\Seeders;
-
-use Illuminate\Database\Seeder;
+Seeder
 
 class RiderSeeder extends Seeder
 {

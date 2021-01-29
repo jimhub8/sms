@@ -2,6 +2,6 @@
 
 @section('content')
 <v-app>
-    <my-agents />
+    <my-stock />
 </v-app>
 @endsection

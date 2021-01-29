@@ -1,15 +1,48 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-jet-welcome />
-            </div>
-        </div>
-    </div>
-</x-app-layout>
+@section('content')
+<v-app>
+    <v-card style="width: 60%!important;margin: auto">
+        <v-card-title>
+            Dashboard
+        </v-card-title>
+        <v-divider></v-divider>
+        <v-card-text>
+            <v-container>
+                <v-layout row>
+                    <v-flex sm5 style="margin-left: 30px;cursor: pointer">
+                        <v-hover>
+                            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`" class="mx-auto"
+                                width="100%" href="/sms" style="height: 100px;text-decoration: none;">
+                                <v-container fill-height>
+                                    <p style="margin: auto;font-size: 40px;">Go To Sms</p>
+                                </v-container>
+                            </v-card>
+                        </v-hover>
+                    </v-flex>
+                    <v-flex sm5 style="cursor: pointer" offset-sm1>
+                        <v-hover>
+                            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`" class="mx-auto"
+                                width="100%" href="/portal" style="height: 100px;text-decoration: none;">
+                                <v-container fill-height>
+                                    <p style="margin: auto;font-size: 40px;">Go To Portal</p>
+                                </v-container>
+                            </v-card>
+                        </v-hover>
+                    </v-flex>
+                    {{-- <v-flex sm5 offset-sm1 style="cursor: pointer">
+                        <v-hover>
+                            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`" class="mx-auto"
+                                width="100%" href="/sms">
+                                <v-container fill-height>
+                                    PORTAL
+                                </v-container>
+                            </v-card>
+                        </v-hover>
+                    </v-flex> --}}
+                </v-layout>
+            </v-container>
+        </v-card-text>
+    </v-card>
+</v-app>
+@endsection

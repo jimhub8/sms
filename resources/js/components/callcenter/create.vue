@@ -7,7 +7,7 @@
     <!-- <el-row :gutter="20"> -->
     <!-- <el-col :span="24"> -->
     <div>
-        <label for="">Start Date</label>
+        <label for="">Date</label>
         <el-date-picker v-model="form.report_date" type="date" placeholder="Pick a day" style="width: 100%" format="yyyy/MM/dd" value-format="yyyy-MM-dd">
         </el-date-picker>
     </div>
@@ -21,7 +21,7 @@
     <div class="text item">
         <label for="">Client</label>
         <el-select v-model="form.client" placeholder="Select" style="width: 100%" allow-create filterable clearable>
-            <el-option v-for="item in clients" :key="item.value" :label="item.value" :value="item.value"></el-option>
+            <el-option v-for="item in vendors" :key="item.name" :label="item.name" :value="item.name"></el-option>
         </el-select>
     </div>
 
@@ -73,6 +73,9 @@
 </template>
 
 <script>
+import {
+    mapState
+} from 'vuex';
 export default {
     props: ["clients"],
     data() {
@@ -106,7 +109,9 @@ export default {
                     label: "Incomplete number",
                 },
             ],
-            form: {},
+            form: {
+                report_date: new Date()
+            },
             tableData: [{
                 status: "",
                 count: 0,
@@ -137,9 +142,22 @@ export default {
                 })
                 .catch((error) => {
                     this.loading = false;
-                    console.log(error);
+                    // console.log(error);
+                    if (error.response.status === 500) {
+                        eventBus.$emit('errorEvent', error.response.statusText)
+                        return
+                    } else if (error.response.status === 401 || error.response.status === 409) {
+                        eventBus.$emit('reloadRequest', error.response.statusText)
+                    } else if (error.response.status === 422) {
+                        eventBus.$emit('errorEvent', error.response.data.message)
+                        context.commit('errors', error.response.data.errors)
+                        return
+                    }
                 });
         },
+    },
+    computed: {
+        ...mapState(['vendors'])
     },
 };
 </script>

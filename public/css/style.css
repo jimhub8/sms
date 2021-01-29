@@ -104,8 +104,6 @@ body {
     padding: 0 !important;
 }
 
-
-
 .router-link-exact-active .v-application a {
     color: #1976d2 !important;
 }
@@ -116,4 +114,11 @@ body {
 
 .el-button.is-circle {
     color: #000 !important;
+}
+.v-sheet.v-card:not(.v-sheet--outlined){
+    width: 100% !important;
+}
+
+.has-text-danger {
+    color: red;
 }

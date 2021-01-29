@@ -28,6 +28,22 @@ class AgentController extends Controller
         //
     }
 
+    public function store(Request $request)
+    {
+        $this->Validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:agents',
+            'role' => 'required',
+        ]);
+        // return $data;
+        return Agent::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'town' => $request->town,
+            'password' => bcrypt('password'),
+        ]);
+    }
+
     /**
      * Update the specified resource in storage.
      *

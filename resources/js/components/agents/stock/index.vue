@@ -2,23 +2,11 @@
 <div>
     <v-container fluid fill-height>
         <v-layout justify-center align-center wrap>
-            <v-card>
-
-                <v-flex sm12>
-                    <v-card style="padding: 20px 0;">
-                        <el-breadcrumb separator-class="el-icon-arrow-right">
-                            <el-breadcrumb-item :to="{ path: '/' }">Dashboard</el-breadcrumb-item>
-                            <el-breadcrumb-item>Stock</el-breadcrumb-item>
-                        </el-breadcrumb>
-                        <div style="height: 20px"></div>
-
-                    </v-card>
-                </v-flex>
-
+            <v-card style="padding: 20px;">
                 <!-- <v-pagination v-model="stock.current_page" :length="stock.last_page" total-visible="5" @input="next_page(stock.path, stock.current_page)" circle v-if="stock.last_page > 1"></v-pagination> -->
 
                 <v-row>
-                    <v-col sm="3">
+                    <v-col sm="3" v-if="guard == 'web'">
                         <label for="">Agent</label>
                         <el-select v-model="form.agent_id" placeholder="Select">
                             <el-option v-for="item in agents" :key="item.id" :label="item.name" :value="item.id">
@@ -58,7 +46,7 @@
                                 </template>
                                 <span>Refresh</span>
                             </v-tooltip>
-                            <v-btn color="info" @click="openCreate" text>Update Stock</v-btn>
+                            <v-btn color="info" @click="openCreate" text v-if="guard == 'agent'">Update Stock</v-btn>
                             <v-spacer></v-spacer>
                             <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
                         </v-card-title>
@@ -91,7 +79,7 @@
 
         </v-layout>
     </v-container>
-    <Create></Create>
+    <Create />
     <!-- <Edit></Edit> -->
 </div>
 </template>
@@ -104,7 +92,7 @@ import Create from "./create";
 // import Edit from "./edit";
 
 export default {
-    props: ['user'],
+    props: ['user', 'guard'],
     components: {
         Create,
         // Edit,

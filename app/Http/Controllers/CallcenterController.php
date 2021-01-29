@@ -37,6 +37,12 @@ class CallcenterController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->all();
+
+        $this->Validate($request, [
+            'client' => 'required',
+            'total_orders' => 'required'
+        ]);
 
 
         // $request->start_date = Carbon::parse($request->start_date);
@@ -48,7 +54,7 @@ class CallcenterController extends Controller
         return Callcenter::updateOrCreate(
             [
                 // 'start_date' => $request->start_date,
-                'report_date' => $request->report_date,
+                'report_date' => Carbon::parse($request->report_date),
                 'client' => $request->client
             ],
             [

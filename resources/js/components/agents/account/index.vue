@@ -2,14 +2,6 @@
 <div>
     <v-container fluid fill-height>
         <v-layout justify-center align-center wrap>
-            <v-flex sm12>
-                <v-card style="padding: 20px 0;">
-                    <el-breadcrumb separator-class="el-icon-arrow-right">
-                        <el-breadcrumb-item :to="{ path: '/' }">Dashboard</el-breadcrumb-item>
-                        <el-breadcrumb-item>Agents</el-breadcrumb-item>
-                    </el-breadcrumb>
-                </v-card>
-            </v-flex>
             <!-- <v-flex sm12>
                 <v-pagination v-model="agents.current_page" :length="agents.last_page" total-visible="5" @input="next_page(agents.path, agents.current_page)" circle v-if="agents.last_page > 1"></v-pagination>
             </v-flex> -->
@@ -53,8 +45,8 @@
             </v-flex>
         </v-layout>
     </v-container>
-    <Create></Create>
-    <Edit></Edit>
+    <Create />
+    <Edit />
 </div>
 </template>
 

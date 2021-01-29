@@ -18,7 +18,7 @@
     <div class="text item">
         <label for="">Client</label>
         <el-select v-model="form.client" placeholder="Select" style="width: 100%" allow-create filterable clearable>
-            <el-option v-for="item in clients" :key="item.value" :label="item.value" :value="item.value"></el-option>
+            <el-option v-for="item in vendors" :key="item.name" :label="item.name" :value="item.name"></el-option>
         </el-select>
     </div>
 
@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
     props: ['clients'],
     data() {
@@ -108,6 +109,7 @@ export default {
 
     },
     computed: {
+        ...mapState(['vendors']),
         url() {
             return '/export?date=' + this.form.date + '&client=' + this.form.client
         },
@@ -121,6 +123,7 @@ export default {
     mounted() {
         this.report_date();
     },
+
 }
 </script>
 

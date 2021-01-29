@@ -66,7 +66,7 @@ import {
 export default {
     data: () => ({
         dialog: false,
-        loading: false,
+        // loading: false,
         form: {
             stock_date: new Date(),
             opening_stock: 0,
@@ -131,7 +131,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(['errors', 'opening_stock', 'products']),
+        ...mapState(['errors', 'opening_stock', 'products', 'loading']),
         closing_stock() {
             return parseInt(this.form.opening_stock) + parseInt(this.form.received) - parseInt(this.form.delivered) - parseInt(this.form.returned)
         }

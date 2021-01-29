@@ -6,7 +6,7 @@
 
             <v-layout justify-center align-center>
 
-                <router-view />
+                <router-view :user="user" :guard="guard" />
             </v-layout>
         </v-container>
     </v-main>
@@ -44,6 +44,7 @@
 
 <script>
 export default {
+    props: ['user', 'guard'],
 
 }
 </script>

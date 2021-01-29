@@ -4,8 +4,10 @@ namespace App\Imports;
 
 use App\Models\Messages;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class MessageImport implements ToModel
+class MessageImport implements ToModel, WithHeadingRow
+// , WithHeadings
 {
     /**
      * @param array $row
@@ -15,9 +17,9 @@ class MessageImport implements ToModel
     public function model(array $row)
     {
         return new Messages([
-            'name'     => $row[0],
-            'phone'    =>  '0' . $row[1],
-            'address' => $row[2],
+            'name'     => $row['name'],
+            'phone'    =>  '0' . $row['phone'],
+            'address' => $row['address'],
         ]);
     }
 }

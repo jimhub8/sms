@@ -20,6 +20,8 @@ Vue.use(VueRouter)
 Vue.use(ElementUI, { locale });
 
 
+import myUsers from './components/users/users'
+
 import myCallcenter from './components/callcenter'
 import myRider from './components/riders'
 
@@ -39,6 +41,7 @@ import myvendors from './components/agents/vendor'
 
 const routes = [
     { path: '/', component: myCallcenter },
+    { path: '/users', component: myUsers },
     { path: '/rider', component: myRider },
     { path: '/agents', component: myAgents },
     { path: '/products', component: myProducts },

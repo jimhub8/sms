@@ -3,14 +3,6 @@
     <v-container fluid fill-height>
         <v-layout justify-center align-center wrap>
             <v-flex sm12>
-                <v-card style="padding: 20px 0;">
-                    <el-breadcrumb separator-class="el-icon-arrow-right">
-                        <el-breadcrumb-item :to="{ path: '/' }">Dashboard</el-breadcrumb-item>
-                        <el-breadcrumb-item>Vendors</el-breadcrumb-item>
-                    </el-breadcrumb>
-                </v-card>
-            </v-flex>
-            <v-flex sm12>
                 <v-pagination v-model="vendors.current_page" :length="vendors.last_page" total-visible="5" @input="next_page(vendors.path, vendors.current_page)" circle v-if="vendors.last_page > 1"></v-pagination>
             </v-flex>
             <v-flex sm12>

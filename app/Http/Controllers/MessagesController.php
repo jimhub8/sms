@@ -34,15 +34,25 @@ class MessagesController extends Controller
         return 'uploaded';
     }
 
-    public function messages_send()
+    public function messages_send(Request $request)
     {
-        $messages = Messages::all();
+        $messages = Messages::whereBetween('created_at', [$request->start_date, $request->end_date])->get();
+        // $messages = Messages::all();
 
-        foreach ($messages as $message) {
+        foreach ($messages as $key => $message) {
             $sms = new Sms();
-            $message_ = 'Dear ' . $message->name  . ' We trust you are good. This is to register our utmost apology for not making your delivery today for the order you placed online for Electric vacuum foot cleaner. This is as a result of flight delay from Dubai hence goods are expected to arrive by Thursday, 21/01/2021. We therefore request to make your delivery between Friday, 22/01/2021 to Monday, 25/01/2020. Thank you.';
-            // $sms->sms($message->phone, $message_);
+            $message_ = 'Dear ' . $message->name  . ', We would like to inform you that your package has arrived. Please call 020 760 8777/020 760 8778/020 760 8779 for delivery. We will deliver to your doorstep.';
+            $sms->sms($message->phone, $message_);
+            // if ($key < 5) {
+            //     $sms->sms_sandbox($message->phone, $message_);
+            // }
+            // return ;
         }
         return;
+    }
+
+    public function filter_messages(Request $request)
+    {
+        return Messages::whereBetween('created_at', [$request->start_date, $request->end_date])->get();
     }
 }
