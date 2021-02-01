@@ -100,6 +100,10 @@ export default {
                     value: "phone"
                 },
                 {
+                    text: "Role",
+                    value: "role"
+                },
+                {
                     text: "Created On",
                     value: "created_at",
                     // type: "date",

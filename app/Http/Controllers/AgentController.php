@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Agent;
+use App\Mail\AgentMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class AgentController extends Controller
 {
@@ -33,15 +37,22 @@ class AgentController extends Controller
         $this->Validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:agents',
-            // 'role' => 'required',
+            'town' => 'required',
         ]);
+
+        $password = Str::random(8);
         // return $data;
-        return Agent::create([
+        $agent = Agent::create([
             'name' => $request->name,
             'email' => $request->email,
             'town' => $request->town,
-            'password' => bcrypt('password'),
+            'password' => Hash::make($password),
         ]);
+
+        // $agent = Agent::first();
+
+        Mail::send(new AgentMail($agent, $password));
+        return $agent;
     }
 
     /**
