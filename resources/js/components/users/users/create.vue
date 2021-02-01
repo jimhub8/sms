@@ -44,7 +44,7 @@ import {
 export default {
     data: () => ({
         dialog: false,
-        loading: false,
+        // loading: false,
         form: {},
         options: [{
                 value: 'Admin'
@@ -79,7 +79,7 @@ export default {
         },
     },
     computed: {
-        ...mapState(['errors'])
+        ...mapState(['errors', 'loading'])
     },
 };
 </script>

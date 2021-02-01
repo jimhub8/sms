@@ -158,6 +158,9 @@ export default {
         eventBus.$on('alertMessageEvent', data => {
             this.alertMessage()
         });
+        eventBus.$on('alertRequest', data => {
+            this.alertMessage()
+        });
         eventBus.$on('errorEvent', data => {
             this.errorMessage(data)
         });

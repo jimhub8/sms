@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserMail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -31,10 +34,12 @@ class UserController extends Controller
             'email' => 'required|email|unique:users',
             'role' => 'required',
         ]);
+        $password = Str::random(8);
         $data = $request->all();
-        $data['password'] = Hash::make('password');
+        $data['password'] = Hash::make($password);
 
         $user = User::create($data);
+        Mail::send(new UserMail($user, $password));
         // $user->roles()->sync($request->roles);
         return $user;
     }

@@ -39,9 +39,19 @@ import { mapState } from 'vuex';
 export default {
     data: () => ({
         dialog: false,
-        loading: false,
+        // loading: false,
         form: {},
         errors: {},
+        options: [{
+                value: 'Admin'
+            },
+            {
+                value: 'Call center'
+            },
+            {
+                value: 'Rider Manager'
+            },
+        ],
     }),
     created() {
         eventBus.$on("openEditUser", data => {
@@ -84,7 +94,7 @@ export default {
         },
     },
     computed: {
-        // ...mapState(['countries', 'roles'])
+        ...mapState(['loading'])
     },
 
 

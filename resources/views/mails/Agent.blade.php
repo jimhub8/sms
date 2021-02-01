@@ -1,5 +1,5 @@
 @component('mail::message')
-# Hello
+# Hello {{ agent->name }}
 
 Your account has been created. This is your password: {{ $password }}
 
