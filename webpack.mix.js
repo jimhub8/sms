@@ -24,3 +24,10 @@ mix.js('resources/js/app.js', 'public/js')
     ])
     .sass('resources/sass/app.scss', 'public/css/main.css')
     .webpackConfig(require('./webpack.config'));
+
+
+mix.styles([
+    'public/css/portal.css',
+    'public/css/style.css',
+    'public/css/theme.css',
+], 'public/css/all.css');

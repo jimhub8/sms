@@ -5,31 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="profile" href="http://gmpg.org/xfn/11">
-    <link rel="pingback" href="http://awene.co.ke/mftportal/xmlrpc.php">
     <title>MFT &#8211; PORTAL</title>
     <link rel='dns-prefetch' href='//js.stripe.com' />
     <link rel='dns-prefetch' href='//fonts.googleapis.com' />
     <link rel='dns-prefetch' href='//s.w.org' />
     <link rel="icon" href="/logo/logo.png">
 
-
-    {{-- <link rel='stylesheet' id='bootstrap-css'
-        href='http://awene.co.ke/mftportal/wp-content/themes/consulting/assets/css/bootstrap.min.css?ver=5.1.8'
-        type='text/css' media='all' />
-
-    <link rel='stylesheet' id='consulting-style-css'
-        href='http://awene.co.ke/mftportal/wp-content/themes/consulting/style.css?ver=5.1.8' type='text/css'
-        media='all' />
-
-    <link rel='stylesheet' id='consulting-layout-css'
-        href='http://awene.co.ke/mftportal/wp-content/themes/consulting/assets/css/layouts/layout_los_angeles/main.css?ver=5.1.8'
-        type='text/css' media='all' />
-
-
-    <link rel='stylesheet' id='js_composer_front-css'
-        href='http://awene.co.ke/mftportal/wp-content/plugins/js_composer/assets/css/js_composer.min.css?ver=6.4.1'
-        type='text/css' media='all' /> --}}
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
@@ -38,12 +19,8 @@
     <link rel='stylesheet' id='stm-google-fonts-css'
         href='//fonts.googleapis.com/css?family=Poppins%7CPoppins%3A300%2C700%2C400%2C500%2C600&#038;subset=latin%2Clatin-ext%2Cdevanagari&#038;ver=5.1.8'
         type='text/css' media='all' />
+    <script src="{{ asset('js/theme/jquery.min.js') }}"></script>
 
-    <script type='text/javascript' src='http://awene.co.ke/mftportal/wp-includes/js/jquery/jquery.min.js?ver=3.5.1'
-        id='jquery-core-js'></script>
-    <script type='text/javascript'
-        src='http://awene.co.ke/mftportal/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'>
-    </script>
 
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
 
@@ -58,9 +35,7 @@
                 <div class="header_top clearfix">
                     <div class="container">
                         <div class="logo media-left media-middle">
-                            <a href="/"><img
-                                    src="/logo/logo.png"
-                                    style="width: px; height: px;" alt="MFT" /></a>
+                            <a href="/"><img src="/logo/logo.png" style="width: px; height: px;" alt="MFT" /></a>
                         </div>
                         <div class="top_nav media-body media-middle">
                             <div class="header_socials">
@@ -92,9 +67,7 @@
                 <div class="mobile_header">
                     <div class="logo_wrapper clearfix">
                         <div class="logo">
-                            <a href="/"><img
-                                    src="/logo/logo.png"
-                                    style="width: px; height: px;" alt="MFT" /></a>
+                            <a href="/"><img src="/logo/logo.png" style="width: px; height: px;" alt="MFT" /></a>
                         </div>
                         <div id="menu_toggle">
                             <button></button>
@@ -157,13 +130,15 @@
                                                             class="font-color_base no_stripe">FINANCE &amp; HR</h5>
                                                         <ul class="list-group">
                                                             <li><a href="https://forms.gle/xDHw1sjDticAcMVv7"
-                                                                    style="line-height: 30px; color: #000000;" target="Leave">LEAVE
+                                                                    style="line-height: 30px; color: #000000;"
+                                                                    target="Leave">LEAVE
                                                                     APPLICATION</a></li>
                                                             <li><a href="https://phplaravel-317638-1717196.cloudwaysapps.com/"
-                                                                    style="line-height: 30px; color: #000000;"  target="Requisition">PURCHASE
+                                                                    style="line-height: 30px; color: #000000;"
+                                                                    target="Requisition">PURCHASE
                                                                     REQUISITION</a></li>
-                                                            <li><a href="#"
-                                                                    style="line-height: 30px; color: #000000;" target="Advance">SALARY
+                                                            <li><a href="#" style="line-height: 30px; color: #000000;"
+                                                                    target="Advance">SALARY
                                                                     ADVANCE APPLICATION</a></li>
                                                         </ul>
                                                     </div>
@@ -188,13 +163,16 @@
                                                             class="font-color_base no_stripe">OPERATIONS</h5>
                                                         <ul class="list-group">
                                                             <li><a href="/portal#/stock"
-                                                                    style="line-height: 30px; color: #000000;" target="portal">AGENTS
+                                                                    style="line-height: 30px; color: #000000;"
+                                                                    target="portal">AGENTS
                                                                     STOCK RUNNING SHEET</a></li>
                                                             <li><a href="/portal#/rider"
-                                                                    style="line-height: 30px; color: #000000;" target="portal">RIDER
+                                                                    style="line-height: 30px; color: #000000;"
+                                                                    target="portal">RIDER
                                                                     WEEKLY PERFORMANCE REPORT</a></li>
                                                             <li><a href="/portal#/"
-                                                                    style="line-height: 30px; color: #000000;" target="portal">CALL
+                                                                    style="line-height: 30px; color: #000000;"
+                                                                    target="portal">CALL
                                                                     CENTRE WEEKLY PERFORMANCE REPORT</a></li>
                                                         </ul>
                                                     </div>
@@ -222,21 +200,37 @@
                                                         <h5 style="font-size:22px;line-height:46px"
                                                             class="font-color_base no_stripe">WAREHOUSING</h5>
                                                         <ul class="list-group">
-                                                            <li><a href="#"
+                                                            {{-- <li><a href="/warehouse/sop"
                                                                     style="line-height: 30px; color: #000000;">STANDARD
                                                                     OPERATING PROCEDURE (SOP)</a></li>
-                                                            <li><a href="#"
+                                                            <li><a href="/warehouse/"
                                                                     style="line-height: 30px; color: #000000;">GOODS
                                                                     RECEIVED NOTE</a></li>
-                                                            <li><a href="#"
+                                                            <li><a href="/warehouse/"
                                                                     style="line-height: 30px; color: #000000;">DISPATCH
                                                                     NOTE</a></li>
-                                                            <li><a href="#"
+                                                            <li><a href="/warehouse/"
                                                                     style="line-height: 30px; color: #000000;">PACKING
                                                                     SLIP</a></li>
                                                             <li><a href="#"
                                                                     style="line-height: 30px; color: #000000;">OCCURANCE
-                                                                    BOOK</a></li>
+                                                                    BOOK</a></li> --}}
+
+                                                            <li><a href="/warehouse/Warehousing Service - Contract.pdf"
+                                                                    style="line-height: 30px; color: #000000;"
+                                                                    target="contract">
+                                                                    WAREHOUSING SERVICE CONTRACT
+                                                                </a></li>
+                                                            <li><a href="/warehouse/MFT COMPANY PROFILE.pdf"
+                                                                    style="line-height: 30px; color: #000000;"
+                                                                    target="profile">
+                                                                    MFT COMPANY PROFILE
+                                                                </a></li>
+                                                            <li><a href="/warehouse/MFT WAREHOUSING SERVICE BANNAER.pdf"
+                                                                    style="line-height: 30px; color: #000000;"
+                                                                    target="banner">
+                                                                    MFT WAREHOUSING SERVICE BANNER
+                                                                </a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -259,21 +253,22 @@
                                                         <h5 style="font-size:22px;line-height:46px"
                                                             class="font-color_base no_stripe">COMMUNICATIONS</h5>
                                                         <ul class="list-group">
-                                                            <li><a href="#"
-                                                                    style="line-height: 30px; color: #000000;" target="chat">CHAT
+                                                            <li><a href="/sms"
+                                                                    style="line-height: 30px; color: #000000;"
+                                                                    target="sms">SMS</a>
+                                                            </li>
+                                                            <li><a href="#" style="line-height: 30px; color: #000000;"
+                                                                    target="chat">CHAT
                                                                     ROOM</a></li>
-                                                            <li><a href="#"
-                                                                    style="line-height: 30px; color: #000000;" target="forum">DISCUSSION
+                                                            <li><a href="#" style="line-height: 30px; color: #000000;"
+                                                                    target="forum">DISCUSSION
                                                                     FORUM</a></li>
-                                                            <li><a href="#"
-                                                                    style="line-height: 30px; color: #000000;" target="notice">NOTICE
+                                                            <li><a href="#" style="line-height: 30px; color: #000000;"
+                                                                    target="notice">NOTICE
                                                                     BOARD</a></li>
-                                                            <li><a href="#"
-                                                                    style="line-height: 30px; color: #000000;" target="faq">FAQs</a>
-                                                                </li>
-                                                                <li><a href="/sms"
-                                                                    style="line-height: 30px; color: #000000;" target="sms">SMS</a>
-                                                                </li>
+                                                            <li><a href="#" style="line-height: 30px; color: #000000;"
+                                                                    target="faq">FAQs</a>
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -341,23 +336,9 @@
 
     <script src="{{ asset('js/theme/core.min.js') }}"></script>
 
-    {{-- <script type='text/javascript' src='http://awene.co.ke/mftportal/wp-includes/js/jquery/ui/core.min.js?ver=1.12.1'
-        id='jquery-ui-core-js'></script>
-
-
-    <script type='text/javascript'
-        src='http://awene.co.ke/mftportal/wp-content/themes/consulting/assets/js/bootstrap.min.js?ver=5.1.8'
-        id='bootstrap-js'></script>
-    <script type='text/javascript'
-        src='http://awene.co.ke/mftportal/wp-content/themes/consulting/assets/js/custom.js?ver=5.1.8'
-        id='consulting-custom-js'></script>
-    <script type='text/javascript'
-        src='http://awene.co.ke/mftportal/wp-content/plugins/js_composer/assets/js/dist/js_composer_front.min.js?ver=6.4.1'
-        id='wpb_composer_front_js-js'></script> --}}
-
     <style type="text/css">
         #footer .footer_widgets .widget .widget_title {
-            border-top: transparent ;
+            border-top: transparent;
         }
     </style>
 
