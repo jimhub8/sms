@@ -10,10 +10,12 @@
                 <div>
                     <label for="">Full Name</label>
                     <el-input placeholder="John Doe" v-model="form.name"></el-input>
+                    <small v-if="errors['name']" class="has-text-danger">{{ errors['name'][0] }}</small>
                 </div>
                 <div>
                     <label for="">Email Address</label>
                     <el-input placeholder="john@gmail.com" v-model="form.email"></el-input>
+                    <small v-if="errors['email']" class="has-text-danger">{{ errors['email'][0] }}</small>
                 </div>
 
                 <div>
@@ -22,6 +24,7 @@
                         <el-option v-for="item in options" :key="item.value" :label="item.value" :value="item.value">
                         </el-option>
                     </el-select>
+                    <small v-if="errors['role']" class="has-text-danger">{{ errors['role'][0] }}</small>
                 </div>
             </v-card-text>
             <v-card-actions>
@@ -43,9 +46,7 @@ export default {
         dialog: false,
         loading: false,
         form: {},
-        errors: {},
-        options: [
-            {
+        options: [{
                 value: 'Admin'
             },
             {
@@ -62,8 +63,6 @@ export default {
     created() {
         eventBus.$on("openCreateUser", data => {
             this.dialog = true;
-            this.getRole()
-            this.getCountries()
         });
     },
 
@@ -78,23 +77,9 @@ export default {
         close() {
             this.dialog = false;
         },
-        getRole() {
-            var payload = {
-                model: 'roles',
-                update: 'updateRoleList'
-            }
-            this.$store.dispatch("getItems", payload);
-        },
-        getCountries() {
-            var payload = {
-                model: 'countries',
-                update: 'updateCountry',
-            }
-            this.$store.dispatch('getItems', payload);
-        },
     },
     computed: {
-        ...mapState(['roles', 'countries'])
+        ...mapState(['errors'])
     },
 };
 </script>

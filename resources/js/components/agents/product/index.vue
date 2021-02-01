@@ -94,6 +94,13 @@ export default {
         openEdit(data) {
             eventBus.$emit("openEditProduct", data);
         },
+        getVendors() {
+            var payload = {
+                model: 'vendors',
+                update: 'updateVendors'
+            }
+            this.$store.dispatch("getItems", payload);
+        },
 
         confirm_delete(item) {
             this.$confirm('This will permanently delete the file. Continue?', 'Warning', {
@@ -145,6 +152,7 @@ export default {
     mounted() {
         // this.$store.dispatch('getProducts');
         eventBus.$emit("LoadingEvent");
+        this.getVendors();
         this.getProducts();
     },
     created() {

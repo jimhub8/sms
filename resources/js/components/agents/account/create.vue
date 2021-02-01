@@ -1,6 +1,6 @@
 <template>
 <v-layout row justify-center>
-    <v-dialog v-model="dialog" persistent max-width="500px">
+    <v-dialog v-model="dialog" persistent max-width="400px">
         <v-card>
             <v-card-title>
                 <span class="headline text-center" style="margin: auto;">Create Agent</span>
@@ -17,6 +17,11 @@
                         <label for="">Email Address</label>
                         <el-input placeholder="john@gmail.com" v-model="form.email"></el-input>
                         <small v-if="errors['email']" class="has-text-danger">{{ errors['email'][0] }}</small>
+                    </div>
+                    <div>
+                        <label for="">Town</label>
+                        <el-input placeholder="" v-model="form.town"></el-input>
+                        <small v-if="errors['town']" class="has-text-danger">{{ errors['town'][0] }}</small>
                     </div>
                 </v-container>
             </v-card-text>

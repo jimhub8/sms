@@ -9,27 +9,28 @@
         <el-select v-model="form.rider" placeholder="Select" style="width: 100%" allow-create filterable clearable>
             <el-option v-for="item in riders" :key="item.value" :label="item.value" :value="item.value"></el-option>
         </el-select>
+        <small v-if="errors['rider']" class="has-text-danger">{{ errors['rider'][0] }}</small>
     </div>
     <el-row :gutter="20">
         <el-col :span="12">
             <label for="">Start Date</label>
             <el-date-picker v-model="form.start_date" type="date" placeholder="Pick a day" style="width: 100%" format="yyyy/MM/dd" value-format="yyyy-MM-dd">
             </el-date-picker>
+            <small v-if="errors['start_date']" class="has-text-danger">{{ errors['start_date'][0] }}</small>
         </el-col>
         <el-col :span="12">
             <label for="">End Date</label>
             <el-date-picker v-model="form.end_date" type="date" placeholder="Pick a day" style="width: 100%" format="yyyy/MM/dd" value-format="yyyy-MM-dd">
             </el-date-picker>
+            <small v-if="errors['end_date']" class="has-text-danger">{{ errors['end_date'][0] }}</small>
         </el-col>
     </el-row>
 
-
-        <el-tooltip content="Download report" placement="bottom">
-            <el-button circle  @click="download">
-                <i class="mdi mdi-file-excel" style="font-size: 20px"></i>
-            </el-button>
-        </el-tooltip>
-
+    <el-tooltip content="Download report" placement="bottom">
+        <el-button circle @click="download">
+            <i class="mdi mdi-file-excel" style="font-size: 20px"></i>
+        </el-button>
+    </el-tooltip>
 
     <table class="table table-hover table-striped">
         <thead>
@@ -78,7 +79,7 @@ export default {
                 .getAttribute("content"),
             form: {},
             loading: false,
-            date_options: [],
+            errors: [],
             tableData: {},
             json_fields: {
                 "Status": "status",
@@ -89,8 +90,9 @@ export default {
     methods: {
         show() {
             this.loading = true
+            this.errors = []
             axios.post('rider_filter', this.form).then((response) => {
-                console.log(response);
+                // console.log(response);
                 this.loading = false
                 this.tableData = response.data
                 this.$message({
@@ -98,7 +100,24 @@ export default {
                     type: 'success'
                 });
             }).catch((error) => {
+                console.log(error.response.statusText);
                 this.loading = false
+                this.tableData = {}
+
+                if (error.response.status === 500) {
+                    eventBus.$emit('errorEvent', error.response.statusText)
+                    return
+                } else if (error.response.status === 401 || error.response.status === 409) {
+                    eventBus.$emit('reloadRequest', error.response.statusText)
+                } else if (error.response.status === 422) {
+                    this.errors = error.response.data.errors
+                    eventBus.$emit('errorEvent', error.response.data.message)
+                    return
+                } else if (error.response.status === 404) {
+                    // this.errors = error.response.data.errors
+                    eventBus.$emit('errorEvent', error.response.data.message)
+                    return
+                }
                 console.log(error);
             })
         },

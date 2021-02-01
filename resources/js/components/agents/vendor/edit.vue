@@ -1,6 +1,6 @@
 <template>
 <v-layout row justify-center>
-    <v-dialog v-model="dialog" persistent max-width="700px">
+    <v-dialog v-model="dialog" persistent max-width="400px">
         <v-card>
             <v-card-title>
                 <span class="headline text-center" style="margin: auto;">Edit Vendor</span>
@@ -11,20 +11,10 @@
                     <v-layout row wrap>
                         <v-flex sm12>
                             <div>
-                                <label for="">Full Name</label>
+                                <label for="">Vendor Name</label>
                                 <el-input placeholder="John Doe" v-model="form.name"></el-input>
+                                <small v-if="errors['name']" class="has-text-danger">{{ errors['name'][0] }}</small>
                             </div>
-                            <div>
-                                <label for="">Email Address</label>
-                                <el-input placeholder="john@gmail.com" v-model="form.email"></el-input>
-                            </div>
-                            <div>
-                                <label for="">Phone Number</label>
-                                <el-input placeholder="+254..." v-model="form.phone"></el-input>
-                            </div>
-
-                            <label for="">Address</label>
-                            <el-input placeholder="Main st" v-model="form.address"></el-input>
                         </v-flex>
                     </v-layout>
                 </v-container>
@@ -49,15 +39,6 @@ export default {
         payload: {
             model: 'vendors',
         },
-        gender: [{
-                value: 'Male',
-                lable: 'Male',
-            },
-            {
-                value: 'Female',
-                lable: 'Female',
-            },
-        ]
     }),
     created() {
         eventBus.$on("openEditVendor", data => {
@@ -68,8 +49,13 @@ export default {
 
     methods: {
         save() {
-            this.payload['data'] = this.form
-            this.$store.dispatch('patchItems', this.payload)
+
+            var payload = {
+                model: 'vendors',
+                id: this.form.id,
+                data: this.form
+            }
+            this.$store.dispatch('patchItems', payload)
                 .then(response => {
                     eventBus.$emit("vendorEvent")
                 });

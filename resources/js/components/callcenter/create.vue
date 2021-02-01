@@ -10,6 +10,7 @@
         <label for="">Date</label>
         <el-date-picker v-model="form.report_date" type="date" placeholder="Pick a day" style="width: 100%" format="yyyy/MM/dd" value-format="yyyy-MM-dd">
         </el-date-picker>
+        <small v-if="errors['report_date']" class="has-text-danger">{{ errors['report_date'][0] }}</small>
     </div>
     <!-- </el-col> -->
     <!-- <el-col :span="12">
@@ -23,11 +24,13 @@
         <el-select v-model="form.client" placeholder="Select" style="width: 100%" allow-create filterable clearable>
             <el-option v-for="item in vendors" :key="item.name" :label="item.name" :value="item.name"></el-option>
         </el-select>
+        <small v-if="errors['client']" class="has-text-danger">{{ errors['client'][0] }}</small>
     </div>
 
     <div>
         <label for="">Total Orders</label>
         <el-input placeholder="Please input" v-model="form.total_orders"></el-input>
+        <small v-if="errors['total_orders']" class="has-text-danger">{{ errors['total_orders'][0] }}</small>
     </div>
 
     <div>
@@ -117,6 +120,7 @@ export default {
                 count: 0,
             }, ],
             loading: false,
+            errors: []
         };
     },
     methods: {
@@ -132,7 +136,7 @@ export default {
         send_report() {
             this.loading = true;
             this.form.data = this.tableData;
-
+            this.errors = []
             axios
                 .post("report", this.form)
                 .then((response) => {
@@ -145,12 +149,13 @@ export default {
                     // console.log(error);
                     if (error.response.status === 500) {
                         eventBus.$emit('errorEvent', error.response.statusText)
+
                         return
                     } else if (error.response.status === 401 || error.response.status === 409) {
                         eventBus.$emit('reloadRequest', error.response.statusText)
                     } else if (error.response.status === 422) {
+                        this.errors = error.response.data.errors
                         eventBus.$emit('errorEvent', error.response.data.message)
-                        context.commit('errors', error.response.data.errors)
                         return
                     }
                 });

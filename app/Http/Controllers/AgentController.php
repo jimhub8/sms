@@ -33,7 +33,7 @@ class AgentController extends Controller
         $this->Validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:agents',
-            'role' => 'required',
+            // 'role' => 'required',
         ]);
         // return $data;
         return Agent::create([
@@ -53,7 +53,7 @@ class AgentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Agent::find($id)->update($request->all());
     }
 
     /**

@@ -1,6 +1,6 @@
 <template>
 <v-layout row justify-center>
-    <v-dialog v-model="dialog" persistent max-width="700px">
+    <v-dialog v-model="dialog" persistent max-width="400px">
         <v-card>
             <v-card-title>
                 <span class="headline text-center" style="margin: auto;">Edit Agent</span>
@@ -18,10 +18,11 @@
                                 <label for="">Email Address</label>
                                 <el-input placeholder="john@gmail.com" v-model="form.email"></el-input>
                             </div>
-                            <!-- <div>
-                                <label for="">Phone Number</label>
-                                <el-input placeholder="+254..." v-model="form.phone"></el-input>
-                            </div> -->
+                            <div>
+                                <label for="">Town</label>
+                                <el-input placeholder="" v-model="form.town"></el-input>
+                                <small v-if="errors['town']" class="has-text-danger">{{ errors['town'][0] }}</small>
+                            </div>
                         </v-flex>
                     </v-layout>
                 </v-container>
@@ -43,18 +44,6 @@ export default {
         loading: false,
         form: {},
         errors: {},
-        payload: {
-            model: 'clients',
-        },
-        gender: [{
-                value: 'Male',
-                lable: 'Male',
-            },
-            {
-                value: 'Female',
-                lable: 'Female',
-            },
-        ]
     }),
     created() {
         eventBus.$on("openEditAgent", data => {
@@ -65,8 +54,12 @@ export default {
 
     methods: {
         save() {
-            this.payload['data'] = this.form
-            this.$store.dispatch('patchItems', this.payload)
+            var payload = {
+                model: 'agents',
+                id: this.form.id,
+                data: this.form
+            }
+            this.$store.dispatch('patchItems', payload)
                 .then(response => {
                     eventBus.$emit("agentEvent")
                 });

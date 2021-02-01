@@ -25,6 +25,9 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
+        $this->Validate($request, [
+        'name' => 'required'
+    ]);
         return Vendor::create($request->all());
     }
 
@@ -34,21 +37,11 @@ class VendorController extends Controller
      * @param  \App\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
-    public function show(Vendor $vendor)
+    public function show($id)
     {
-        //
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Vendor  $vendor
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Vendor $vendor)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -57,9 +50,9 @@ class VendorController extends Controller
      * @param  \App\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vendor $vendor)
+    public function update(Request $request, $id)
     {
-        //
+        return Vendor::find($id)->update($request->all());
     }
 
     /**
@@ -68,7 +61,7 @@ class VendorController extends Controller
      * @param  \App\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vendor $vendor)
+    public function destroy($id)
     {
         //
     }

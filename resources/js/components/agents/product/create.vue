@@ -21,6 +21,7 @@
                                     <el-option v-for="item in vendors" :key="item.id" :label="item.name" :value="item.id">
                                     </el-option>
                                 </el-select>
+                                <small v-if="errors['vendor_id']" class="has-text-danger">{{ errors['vendor_id'][0] }}</small>
                             </div>
                         </v-flex>
                     </v-layout>
@@ -66,13 +67,6 @@ export default {
         },
         close() {
             this.dialog = false;
-        },
-        getVendors() {
-            var payload = {
-                model: 'vendors',
-                update: 'updateVendors'
-            }
-            this.$store.dispatch("getItems", payload);
         },
     },
     computed: {

@@ -76,6 +76,10 @@ export default {
                     value: "email"
                 },
                 {
+                    text: "Town",
+                    value: "town",
+                },
+                {
                     text: "Created On",
                     value: "created_at",
                 },

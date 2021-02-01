@@ -25,46 +25,6 @@
                         </v-list-item-content>
                     </v-list-item>
                 </router-link>
-                <router-link to="/agents" v-if="user.role == 'Admin'">
-                    <v-list-item>
-                        <v-list-item-icon>
-                            <v-icon>mdi-account</v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-content>
-                            <v-list-item-title>Agents</v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                </router-link>
-                <router-link to="/vendors" v-if="user.role == 'Admin'">
-                    <v-list-item>
-                        <v-list-item-icon>
-                            <v-icon>mdi-select-multiple-marker</v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-content>
-                            <v-list-item-title>Vendors</v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                </router-link>
-                <router-link to="/products" v-if="user.role == 'Admin'">
-                    <v-list-item>
-                        <v-list-item-icon>
-                            <v-icon>mdi-chart-ppf</v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-content>
-                            <v-list-item-title>Products</v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                </router-link>
-                <router-link to="/users" v-if="user.role == 'Admin'">
-                    <v-list-item>
-                        <v-list-item-icon>
-                            <v-icon>mdi-account-circle-outline</v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-content>
-                            <v-list-item-title>Users</v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                </router-link>
                 <router-link to="/stock" v-if="user.role == 'Admin'">
                     <v-list-item>
                         <v-list-item-icon>
@@ -75,17 +35,90 @@
                         </v-list-item-content>
                     </v-list-item>
                 </router-link>
+
+                <!-- <v-list-group prepend-icon="mdi-account-circle">
+                    <template v-slot:activator>
+                        <v-list-item-title>Users</v-list-item-title>
+                    </template>
+                    <router-link to="/users" class="v-list-item v-list-item--link theme--light">
+                        <div class="v-list__tile__action">
+                            <v-icon>mdi-account-circle</v-icon>
+                        </div>
+                        <div class="v-list-item__content">
+                            <div class="v-list-item__title">Users</div>
+                        </div>
+                    </router-link>
+                    <router-link to="/roles" class="v-list-item v-list-item--link theme--light">
+                        <div class="v-list__tile__action">
+                            <v-icon>mdi-account-multiple-check</v-icon>
+                        </div>
+                        <div class="v-list-item__content">
+                            <div class="v-list-item__title">User Roles</div>
+                        </div>
+                    </router-link>
+                </v-list-group> -->
+
+                <v-list-group prepend-icon="mdi-cogs">
+                    <template v-slot:activator>
+                        <v-list-item-content>
+                            <v-list-item-title> Settings</v-list-item-title>
+                        </v-list-item-content>
+                    </template>
+                    <router-link to="/agents" v-if="user.role == 'Admin'">
+                        <v-list-item>
+                            <v-list-item-icon>
+                                <v-icon>mdi-account</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-content>
+                                <v-list-item-title>Agents</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </router-link>
+                    <router-link to="/vendors" v-if="user.role == 'Admin'">
+                        <v-list-item>
+                            <v-list-item-icon>
+                                <v-icon>mdi-select-multiple-marker</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-content>
+                                <v-list-item-title>Vendors</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </router-link>
+                    <router-link to="/products" v-if="user.role == 'Admin'">
+                        <v-list-item>
+                            <v-list-item-icon>
+                                <v-icon>mdi-chart-ppf</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-content>
+                                <v-list-item-title>Products</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </router-link>
+                    <router-link to="/users" v-if="user.role == 'Admin'">
+                        <v-list-item>
+                            <v-list-item-icon>
+                                <v-icon>mdi-account-circle-outline</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-content>
+                                <v-list-item-title>Users</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </router-link>
+                </v-list-group>
+
             </v-list-item-group>
         </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app color="primary">
+    <v-app-bar app :color="header_color">
         <v-app-bar-nav-icon @click="drawer = !drawer" color="white"></v-app-bar-nav-icon>
 
-        <v-toolbar-title style="color: #fff">MFT</v-toolbar-title>
+        <v-toolbar-title style="color: #fff">
+            <img src="/logo/logo.png" style="width: 60px;" />
+        </v-toolbar-title>
 
         <v-spacer></v-spacer>
-        <myMenu :user="user"/>
+        <myMenu :user="user" />
     </v-app-bar>
 
     <v-main>
@@ -103,7 +136,8 @@ export default {
     props: ['user', 'guard'],
     data: () => ({
         selectedItem: 1,
-        drawer: null
+        drawer: null,
+        header_color: '#141f4f'
     }),
     methods: {
         alertMessage() {
@@ -120,7 +154,7 @@ export default {
         }
     },
 
-    created () {
+    created() {
         eventBus.$on('alertMessageEvent', data => {
             this.alertMessage()
         });
@@ -134,5 +168,22 @@ export default {
 <style scoped>
 .v-application a {
     text-decoration: none !important;
+}
+
+.v-list-item__content,
+.v-icon.v-icon {
+    color: #fff !important;
+}
+
+.theme--light.v-navigation-drawer {
+    background: #000 !important;
+}
+
+.v-list-item--link:hover {
+    background: #333 !important;
+}
+
+.mdi.mdi-cogs {
+    color: #fff !important;
 }
 </style>

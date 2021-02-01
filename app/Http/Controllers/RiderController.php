@@ -30,7 +30,11 @@ class RiderController extends Controller
         // return Rider::create($request->all());
 
         $this->Validate($request, [
+            'date' => 'required',
             'rider' => 'required',
+            'total_orders' => 'required',
+            'delivered' => 'required',
+            'returned' => 'required',
             'total_orders' => 'required'
         ]);
 
@@ -57,10 +61,20 @@ class RiderController extends Controller
      */
     public function rider_filter(Request $request)
     {
+        $this->Validate($request, [
+            'rider' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required'
+        ]);
         // return $request->all();
         $start_date = Carbon::parse($request->start_date)->format('y-m-d');
         $end_date = Carbon::parse($request->end_date)->format('y-m-d');
-        return Rider::whereBetween('date', [$start_date, $end_date])->where('rider', $request->rider)->get();
+        $report = Rider::whereBetween('date', [$start_date, $end_date])->where('rider', $request->rider)->get();
+        if(count($report) > 0) {
+            return $report;
+        } else{
+            abort(404, 'No data found');
+        }
     }
 
 

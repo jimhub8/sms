@@ -14,12 +14,14 @@
         <label for="">Start Date</label>
         <el-date-picker v-model="form.date" type="date" placeholder="Pick a day" style="width: 100%" format="yyyy/MM/dd" value-format="yyyy-MM-dd">
         </el-date-picker>
+            <small v-if="errors['date']" class="has-text-danger">{{ errors['date'][0] }}</small>
     </div>
     <div class="text item">
         <label for="">Client</label>
         <el-select v-model="form.client" placeholder="Select" style="width: 100%" allow-create filterable clearable>
             <el-option v-for="item in vendors" :key="item.name" :label="item.name" :value="item.name"></el-option>
         </el-select>
+            <small v-if="errors['client']" class="has-text-danger">{{ errors['client'][0] }}</small>
     </div>
 
     <!-- <download-excel :data="tableData.data" footer="Test footer" name="Report.xls"> -->
@@ -69,6 +71,7 @@ export default {
                 .querySelector('meta[name="csrf-token"]')
                 .getAttribute("content"),
             form: {},
+            errors: [],
             loading: false,
             date_options: [],
             tableData: {},
@@ -80,6 +83,7 @@ export default {
     },
     methods: {
         show() {
+            this.errors = []
             this.loading = true
             axios.post('filter', this.form).then((response) => {
                 console.log(response);
@@ -90,7 +94,22 @@ export default {
                     type: 'success'
                 });
             }).catch((error) => {
+                this.tableData = {}
                 this.loading = false
+                if (error.response.status === 500) {
+                    eventBus.$emit('errorEvent', error.response.statusText)
+                    return
+                } else if (error.response.status === 401 || error.response.status === 409) {
+                    eventBus.$emit('reloadRequest', error.response.statusText)
+                } else if (error.response.status === 422) {
+                    this.errors = error.response.data.errors
+                    eventBus.$emit('errorEvent', error.response.data.message)
+                    return
+                } else if (error.response.status === 404) {
+                    // this.errors = error.response.data.errors
+                    eventBus.$emit('errorEvent', error.response.data.message)
+                    return
+                }
                 console.log(error);
             })
         },

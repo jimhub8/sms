@@ -4,7 +4,19 @@
         <v-layout justify-center align-center wrap>
             <v-card style="padding: 20px;">
                 <!-- <v-pagination v-model="stock.current_page" :length="stock.last_page" total-visible="5" @input="next_page(stock.path, stock.current_page)" circle v-if="stock.last_page > 1"></v-pagination> -->
-
+                <v-spacer></v-spacer>
+                <form action="/agent/logout" method="post"  v-if="guard == 'agent'">
+                    <input type="hidden" name="_token" :value="csrf">
+                    <v-tooltip bottom>
+                        <template v-slot:activator="{ on }">
+                            <v-btn v-on="on" flat slot="activator" color="primary" class="mx-0" type="submit" outlined>
+                                <v-icon>mdi-logout</v-icon> Logout
+                            </v-btn>
+                        </template>
+                        <span>Logout</span>
+                    </v-tooltip>
+                </form>
+                <VDivider />
                 <v-row>
                     <v-col sm="3" v-if="guard == 'web'">
                         <label for="">Agent</label>
@@ -102,6 +114,10 @@ export default {
             form: {},
             loader: false,
             search: "",
+
+            csrf: document
+                .querySelector('meta[name="csrf-token"]')
+                .getAttribute("content"),
             headers: [{
                     text: "Created On",
                     value: "created_at",
@@ -123,8 +139,8 @@ export default {
                     value: "returned"
                 },
                 {
-                    text: "Received",
-                    value: "received"
+                    text: "Delivered",
+                    value: "delivered"
                 },
                 {
                     text: "Closing Stock",

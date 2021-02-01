@@ -86,6 +86,11 @@ class CallcenterController extends Controller
      */
     public function filter(Request $request)
     {
+
+        $this->Validate($request, [
+            'client' => 'required',
+            'date' => 'required'
+        ]);
         // return $request->all();
 
         // $date_array = explode(' : ', $request->date);
@@ -97,7 +102,7 @@ class CallcenterController extends Controller
         if (count($report) > 0) {
             return $report[0];
         } else {
-            return [];
+            abort(404, 'No data found');
         }
     }
 

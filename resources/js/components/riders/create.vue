@@ -8,7 +8,7 @@
         <label for="">Date</label>
         <el-date-picker v-model="form.date" type="date" placeholder="Pick a day" style="width: 100%" format="yyyy/MM/dd" value-format="yyyy-MM-dd">
         </el-date-picker>
-
+        <small v-if="errors['date']" class="has-text-danger">{{ errors['date'][0] }}</small>
     </div>
 
     <div class="text item">
@@ -16,11 +16,13 @@
         <el-select v-model="form.rider" placeholder="Select" style="width: 100%" allow-create filterable clearable>
             <el-option v-for="item in riders" :key="item.value" :label="item.value" :value="item.value"></el-option>
         </el-select>
+        <small v-if="errors['rider']" class="has-text-danger">{{ errors['rider'][0] }}</small>
     </div>
 
     <div>
         <label for="">Total Orders</label>
         <el-input placeholder="Please input" v-model="form.total_orders"></el-input>
+        <small v-if="errors['total_orders']" class="has-text-danger">{{ errors['total_orders'][0] }}</small>
     </div>
 
     <el-row :gutter="20">
@@ -29,12 +31,14 @@
                 <label for="">Delivered</label>
                 <el-input placeholder="Please input" v-model="form.delivered"></el-input>
             </div>
+            <small v-if="errors['delivered']" class="has-text-danger">{{ errors['delivered'][0] }}</small>
         </el-col>
         <el-col :span="12">
             <div>
                 <label for="">Returned</label>
                 <el-input placeholder="Please input" v-model="form.returned"></el-input>
             </div>
+            <small v-if="errors['returned']" class="has-text-danger">{{ errors['returned'][0] }}</small>
         </el-col>
     </el-row>
 
@@ -105,7 +109,7 @@ export default {
                 status: '',
                 count: 0
             }],
-
+            errors: [],
             loading: false
         };
     },
@@ -122,6 +126,7 @@ export default {
         send_report() {
             this.loading = true
 
+            this.errors = []
             axios.post('riders', this.form).then((response) => {
                 console.log(response);
                 this.loading = false
@@ -137,8 +142,8 @@ export default {
                 } else if (error.response.status === 401 || error.response.status === 409) {
                     eventBus.$emit('reloadRequest', error.response.statusText)
                 } else if (error.response.status === 422) {
+                    this.errors = error.response.data.errors
                     eventBus.$emit('errorEvent', error.response.data.message)
-                    context.commit('errors', error.response.data.errors)
                     return
                 }
             })

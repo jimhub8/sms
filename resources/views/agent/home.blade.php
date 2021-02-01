@@ -2,6 +2,6 @@
 
 @section('content')
 <v-app>
-    <my-stock />
+    <my-stock :guard="'agent'" />
 </v-app>
 @endsection
