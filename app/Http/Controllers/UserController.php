@@ -50,7 +50,7 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
         //
     }
@@ -62,7 +62,7 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         // $this->Validate($request, [
         //     'name' => 'required',
@@ -71,7 +71,7 @@ class UserController extends Controller
         // ]);
         $data = $request->all();
 
-        $user = User::update($data);
+        $user = User::find($id)->update($data);
         // $user->roles()->sync($request->roles);
         return $user;
     }
@@ -82,7 +82,7 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
         //
     }
