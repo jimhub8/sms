@@ -3,9 +3,10 @@
     <v-layout row justify-center>
         <v-hover>
             <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`" class="mx-auto" style="width: 40%;padding: 10px; height: 700px;margin-top: 100px">
-
                 <v-card-title primary-title>
                     Send sms
+                    <v-spacer></v-spacer>
+                    <v-btn color="primary" text href="/portal#/sms">Send Bulk Sms</v-btn>
                 </v-card-title>
                 <v-divider></v-divider>
                 <v-card-text>

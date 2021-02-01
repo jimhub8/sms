@@ -36,17 +36,27 @@ class MessagesController extends Controller
 
     public function messages_send(Request $request)
     {
+        // return $request->all();
+
+        $raw_message = $request->message;
+
+
         $messages = Messages::whereBetween('created_at', [$request->start_date, $request->end_date])->get();
         // $messages = Messages::all();
 
         foreach ($messages as $key => $message) {
+            // return 'cce';
+            $raw_message = str_replace("{{ Client Name }}", $message->name, $raw_message);
+            $raw_message = str_replace("{{ Client Address }}", $message->address, $raw_message);
+            $raw_message = str_replace("{{ Client Phone }}", $message->phone, $raw_message);
+            // return $raw_message;
             $sms = new Sms();
-            $message_ = 'Dear ' . $message->name  . ', We would like to inform you that your package has arrived. Please call 020 760 8777/020 760 8778/020 760 8779 for delivery. We will deliver to your doorstep.';
+            $message_ = $raw_message;
             $sms->sms($message->phone, $message_);
             // if ($key < 5) {
-            //     $sms->sms_sandbox($message->phone, $message_);
+            // $sms->sms_sandbox($message->phone, $message_);
             // }
-            // return ;
+            // return;
         }
         return;
     }

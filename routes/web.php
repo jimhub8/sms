@@ -18,9 +18,6 @@ use Illuminate\Support\Facades\Route;
 //     return view('sms');
 // });
 
-Route::get('/', function () {
-    return view('dashboard');
-});
 
 Route::get('/sms', 'HomeController@index');
 Route::post('filter_messages', 'MessagesController@filter_messages')->name('filter_messages');
@@ -36,6 +33,9 @@ Route::group(['middleware' => ['auth']], function () {
 });
 Route::group(['middleware' => ['authCheck']], function () {
 
+    Route::get('/', function () {
+        return view('dashboard');
+    });
 
     Route::post('sms', 'SmsController@sms')->name('sms');
 

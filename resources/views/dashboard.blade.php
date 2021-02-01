@@ -59,6 +59,16 @@
                                     <li id="menu-item-7018"
                                         class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7018">
                                         <a href="#">Contacts</a></li>
+
+
+                                    <li id="menu-item-7018"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7018"
+                                        style="margin-top:13px">
+                                        <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" style="color: #337ab7;    border: none;background: transparent;">Logout</button>
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

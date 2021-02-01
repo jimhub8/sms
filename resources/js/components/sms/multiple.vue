@@ -108,11 +108,16 @@
             </v-card>
         </v-flex>
     </v-layout>
+    <mySend :form="form" :messages="messages" />
 </v-container>
 </template>
 
 <script>
+import mySend from './send'
 export default {
+    components: {
+        mySend,
+    },
     data() {
         return {
             loading: false,
@@ -199,29 +204,7 @@ export default {
         },
 
         confirm() {
-            // this.send_sms = true
-            // if (this.messages.length < 1) {
-            //     this.filter()
-            // }
-            this.$confirm(
-                    this.messages.length + " messages will be sent",
-                    "Warning", {
-                        confirmButtonText: "OK",
-                        cancelButtonText: "Cancel",
-                        type: "warning",
-                    }
-                )
-                .then(() => {
-                    if (this.messages.length > 0) {
-                        this.send()
-                    }
-                })
-                .catch(() => {
-                    // this.$message({
-                    //     type: "error",
-                    //     message: "Delete canceled",
-                    // });
-                });
+            eventBus.$emit('smsEvent')
         },
     },
     mounted() {
