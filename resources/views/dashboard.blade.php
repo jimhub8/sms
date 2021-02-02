@@ -189,6 +189,10 @@
                                                                     style="line-height: 30px; color: #000000;"
                                                                     target="portal">CALL
                                                                     CENTRE WEEKLY PERFORMANCE REPORT</a></li>
+							    <li><a href="https://forms.gle/7V2qRt3mokKmt8ZX7"
+                                                                    style="line-height: 30px; color: #000000;"
+                                                                    target="occurrence">OCCURRENCE BOOK/RECORD</a></li>
+
                                                         </ul>
                                                     </div>
                                                 </div>
