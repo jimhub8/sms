@@ -29,11 +29,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::first();
-        $password = Str::random(8);
-        Mail::send(new UserMail($user, $password));
-        // $user->roles()->sync($request->roles);
-        return $user;
+        // $user = User::first();
+        // $password = Str::random(8);
+        // Mail::send(new UserMail($user, $password));
+        // // $user->roles()->sync($request->roles);
+        // return $user;
         $this->Validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users',
