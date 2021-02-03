@@ -84,6 +84,16 @@
                             </v-list-item-content>
                         </v-list-item>
                     </router-link>
+                    <router-link to="/riders"  v-if="user.role == 'Admin' ||  user.role == 'Rider Manager'">
+                        <v-list-item>
+                            <v-list-item-icon>
+                                <v-icon>mdi-bicycle</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-content>
+                                <v-list-item-title>Riders</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </router-link>
                     <router-link to="/products" v-if="user.role == 'Admin'">
                         <v-list-item>
                             <v-list-item-icon>

@@ -24,4 +24,9 @@ class Rider extends Model
     {
         $this->attributes['date'] = Carbon::parse($value)->format('y-m-d');
     }
+    
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->format('D, d M Y');
+    }
 }

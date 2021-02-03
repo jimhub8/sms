@@ -32,6 +32,8 @@ export default {
     updateOpeningStock(state, payload) {
         state.opening_stock = payload
     },
-
+    updateRiders(state, payload) {
+        state.riders = payload
+    }
 }
 

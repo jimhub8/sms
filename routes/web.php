@@ -42,6 +42,7 @@ Route::group(['middleware' => ['authCheck']], function () {
     Route::resource('report', 'CallcenterController');
     Route::resource('users', 'UserController');
     Route::resource('riders', 'RiderController');
+    Route::resource('rideraccount', 'RideraccountController');
     Route::post('filter', 'CallcenterController@filter')->name('filter');
     Route::post('rider_filter', 'RiderController@rider_filter')->name('rider_filter');
 

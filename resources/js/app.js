@@ -37,6 +37,7 @@ import myAgents from './components/agents/account'
 import myProducts from './components/agents/product'
 import myStock from './components/agents/stock'
 import myvendors from './components/agents/vendor'
+import myRiders from './components/agents/rider'
 
 
 const routes = [
@@ -49,6 +50,7 @@ const routes = [
     { path: '/vendors', component: myvendors },
 
     { path: '/sms', component: mySmsMult },
+    { path: '/riders', component: myRiders },
 
 ]
 const router = new VueRouter({
@@ -63,7 +65,8 @@ const app = new Vue({
     store,
     vuetify,
     router,
-    components: {myApp,myHeader,
-        myCallcenter, myRider, mySms, myAgents, myProducts, myStock, myvendors, mySmsMult
+    components: {
+        myApp, myHeader,
+        myCallcenter, myRider, mySms, myAgents, myProducts, myStock, myvendors, mySmsMult, myRiders
     },
 });

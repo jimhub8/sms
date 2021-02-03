@@ -15,7 +15,7 @@ class Stock extends Model
 
     public function getCreatedAtAttribute($value)
     {
-        return Carbon::parse($value)->format('D M d Y');
+        return Carbon::parse($value)->format('D, M d Y');
     }
 
     public function setStockDateAttribute($value)
@@ -27,5 +27,4 @@ class Stock extends Model
     {
         return $this->belongsTo(Agent::class);
     }
-
 }

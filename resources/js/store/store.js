@@ -13,7 +13,7 @@ export default {
         vendors: [],
         stock: [],
         opening_stock: [],
-
+        riders: [],
     },
     getters,
     mutations,
