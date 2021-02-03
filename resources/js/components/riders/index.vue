@@ -1,7 +1,7 @@
 <template>
 <el-card class="box-card" style="width: 40%; margin: auto">
     <!-- <v-app> -->
-        <!-- <v-toolbar color="primary" dark>
+    <!-- <v-toolbar color="primary" dark>
 
             <v-toolbar-title>Rider Perfomance</v-toolbar-title>
 
@@ -12,14 +12,14 @@
             </router-link>
 
         </v-toolbar> -->
-        <el-tabs v-model="activeName" @tab-click="handleClick">
-            <el-tab-pane label="Create" name="first">
-                <myCreate :riders="riders" />
-            </el-tab-pane>
-            <el-tab-pane label="Display" name="second">
-                <myShow :riders="riders" />
-            </el-tab-pane>
-        </el-tabs>
+    <el-tabs v-model="activeName" @tab-click="handleClick">
+        <el-tab-pane label="Create" name="first">
+            <myCreate :riders="riders" />
+        </el-tab-pane>
+        <el-tab-pane label="Display" name="second">
+            <myShow :riders="riders" />
+        </el-tab-pane>
+    </el-tabs>
     <!-- </v-app> -->
 </el-card>
 </template>
@@ -56,8 +56,19 @@ export default {
     methods: {
         handleClick(tab, event) {
             console.log(tab, event);
-        }
-    }
+        },
+        getRiders() {
+            var payload = {
+                model: 'rideraccount',
+                update: 'updateRiders'
+            }
+            this.$store.dispatch("getItems", payload);
+        },
+    },
+
+    mounted() {
+        this.getRiders();
+    },
 };
 </script>
 

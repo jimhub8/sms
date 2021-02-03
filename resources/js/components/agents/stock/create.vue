@@ -93,7 +93,7 @@ export default {
             this.$store.dispatch('postItems', payload)
                 .then(response => {
                     eventBus.$emit("stockEvent")
-                    eventBus.$emit('alertMessageEvent')
+                    // eventBus.$emit('alertMessageEvent')
                 }).catch((error) => {
                     console.log(error.response.data.message);
                     // error.response.data.message

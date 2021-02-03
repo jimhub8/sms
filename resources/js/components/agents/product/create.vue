@@ -62,7 +62,7 @@ export default {
             this.$store.dispatch('postItems', payload)
                 .then(response => {
                     eventBus.$emit("productEvent")
-                    eventBus.$emit('alertMessageEvent')
+                    // eventBus.$emit('alertMessageEvent')
                 });
         },
         close() {

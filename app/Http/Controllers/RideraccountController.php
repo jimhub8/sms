@@ -25,6 +25,9 @@ class RideraccountController extends Controller
      */
     public function store(Request $request)
     {
+        $this->Validate($request, [
+            'name' => 'required|unique:rideraccounts',
+        ]);
         return Rideraccount::create($request->all());
     }
 

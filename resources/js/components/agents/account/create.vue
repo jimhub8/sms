@@ -58,7 +58,7 @@ export default {
             }
             this.$store.dispatch('postItems', payload)
                 .then(response => {
-                    eventBus.$emit('alertMessageEvent')
+                    // eventBus.$emit('alertMessageEvent')
                     eventBus.$emit("agentEvent")
                 }).catch((error) => {
                     console.log(error);

@@ -14,7 +14,7 @@
     <div class="text item">
         <label for="">Rider</label>
         <el-select v-model="form.rider" placeholder="Select" style="width: 100%" allow-create filterable clearable>
-            <el-option v-for="item in riders" :key="item.value" :label="item.value" :value="item.value"></el-option>
+            <el-option v-for="item in riders" :key="item.id" :label="item.name" :value="item.name"></el-option>
         </el-select>
         <small v-if="errors['rider']" class="has-text-danger">{{ errors['rider'][0] }}</small>
     </div>
@@ -71,6 +71,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
     props: ['riders'],
     data() {
@@ -148,6 +149,9 @@ export default {
                 }
             })
         },
+    },
+    computed: {
+        ...mapState(['riders'])
     },
 
 };

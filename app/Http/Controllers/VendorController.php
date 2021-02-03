@@ -26,8 +26,8 @@ class VendorController extends Controller
     public function store(Request $request)
     {
         $this->Validate($request, [
-        'name' => 'required'
-    ]);
+            'name' => 'required|unique:rideraccounts',
+        ]);
         return Vendor::create($request->all());
     }
 
@@ -63,6 +63,6 @@ class VendorController extends Controller
      */
     public function destroy($id)
     {
-        
+
     }
 }
