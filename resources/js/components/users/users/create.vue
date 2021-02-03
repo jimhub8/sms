@@ -55,6 +55,9 @@ export default {
             {
                 value: 'Rider Manager'
             },
+            {
+                value: 'Staff'
+            },
         ],
         payload: {
             model: 'users',
