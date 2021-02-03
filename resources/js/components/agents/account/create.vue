@@ -62,16 +62,15 @@ export default {
                     eventBus.$emit("agentEvent")
                 }).catch((error) => {
                     console.log(error);
-                    if (error.response.status === 500) {
-                        eventBus.$emit('errorEvent', error.response.statusText)
-                        return
-                    } else if (error.response.status === 401 || error.response.status === 409) {
-                        eventBus.$emit('reloadRequest', error.response.statusText)
-                    } else if (error.response.status === 422) {
-                        eventBus.$emit('errorEvent', error.response.data.message)
-                        context.commit('errors', error.response.data.errors)
-                        return
-                    }
+                    // if (error.response.status === 500) {
+                    //     eventBus.$emit('errorEvent', error.response.statusText)
+                    //     return
+                    // } else if (error.response.status === 401 || error.response.status === 409) {
+                    //     eventBus.$emit('reloadRequest', error.response.statusText)
+                    // } else if (error.response.status === 422) {
+                    //     eventBus.$emit('errorEvent', error.response.data.message)
+                    //     return
+                    // }
                 });
         },
         close() {
