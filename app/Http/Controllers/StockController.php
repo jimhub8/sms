@@ -17,7 +17,7 @@ class StockController extends Controller
      */
     public function index()
     {
-        return Stock::with('agent')->paginate();
+        return Stock::with('agent')->paginate(200);
     }
 
     /**
