@@ -30,7 +30,7 @@ class VendorController extends Controller
         ]);
         return Vendor::create($request->all());
     }
-
+    
     /**
      * Display the specified resource.
      *
