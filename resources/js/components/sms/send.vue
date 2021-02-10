@@ -25,7 +25,7 @@
                 <v-btn color="blue darken-1" text @click="close">
                     Close
                 </v-btn>
-                <v-btn color="blue darken-1" @click="confirm" outlined rounded>
+                <v-btn color="blue darken-1" @click="confirm" outlined rounded :loading="loading" :disabled="loading">
                     <v-icon>mdi-send</v-icon>
                     Send
                 </v-btn>
