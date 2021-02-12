@@ -21,7 +21,7 @@ class CreateStocksTable extends Migration
             $table->integer('delivered');
             $table->integer('returned');
             $table->date('stock_date');
-
+            $table->integer('product_id');
             $table->unsignedBigInteger('agent_id');
             $table->timestamps();
         });

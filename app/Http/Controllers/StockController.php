@@ -17,7 +17,8 @@ class StockController extends Controller
      */
     public function index()
     {
-        return Stock::with('agent')->paginate(200);
+        return $stocks = Stock::with(['agent', 'product'])->paginate(200);
+        // $stocks->
     }
 
     /**
@@ -28,30 +29,39 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->all();
+        $this->Validate($request, [
+            'product_id' => 'required',
+        ]);
         if (Auth::guard('agent')->check()) {
             $stock_date = Carbon::parse($request->stock_date)->format('yy-m-d');
             // return $request->all();
             // return Stock::create($request->all());
 
-            $stock_exists = Stock::where('stock_date', $stock_date)->where('agent_id', 1)->exists();
+            $stock_exists = Stock::where('stock_date', $stock_date)
+                ->where('agent_id', Auth::guard('agent')->id())
+                ->where('product_id', $request->product_id)
+                ->exists();
+
             if ($stock_exists) {
                 abort(403, "You already updated today's stock");
             }
             return Stock::updateOrCreate(
                 [
                     'stock_date' => $stock_date,
-                    'agent_id' => 1
+                    'agent_id' => Auth::guard('agent')->id(),
+                    'product_id' => $request->product_id
                 ],
                 [
                     'closing_stock' => $request->closing_stock,
                     'delivered' => $request->delivered,
                     'opening_stock' => $request->opening_stock,
                     'received' => $request->received,
-                    'returned' => $request->returned,
+                    'returned' => $request->returned
                 ]
             );
         } else {
-                abort(403, "Please log in as an agent");
+            abort(403, "Please log in as an agent");
         }
     }
 
@@ -91,7 +101,7 @@ class StockController extends Controller
 
     public function opening_stock($id)
     {
-        $stock = Stock::where('agent_id', 1)->first('closing_stock');
+        $stock = Stock::where('agent_id', Auth::guard('agent')->id())->first('closing_stock');
 
         if (!$stock) {
             $stock = new Stock;
@@ -110,6 +120,9 @@ class StockController extends Controller
         $agent = Stock::with('agent');
         if ($request->agent_id) {
             $agent = $agent->where('agent_id', $request->agent_id);
+        }
+        if ($request->product_id) {
+            $agent = $agent->where('product_id', $request->product_id);
         }
         if ($start_date && $end_date) {
             $agent = $agent->whereBetween('created_at', [$start_date, $end_date]);

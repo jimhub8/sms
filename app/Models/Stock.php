@@ -11,7 +11,7 @@ class Stock extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['agent_id', 'opening_stock','closing_stock','received','delivered','returned','stock_date'];
+    protected $fillable = ['agent_id', 'opening_stock','closing_stock','received','delivered','returned','stock_date', 'product_id'];
 
     public function getCreatedAtAttribute($value)
     {
@@ -26,5 +26,9 @@ class Stock extends Model
     public function agent()
     {
         return $this->belongsTo(Agent::class);
+    }
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
     }
 }

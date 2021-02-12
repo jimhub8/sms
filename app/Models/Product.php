@@ -21,4 +21,9 @@ class Product extends Model
     {
         return Carbon::parse($value)->format('D M d Y');
     }
+
+    public function stock()
+    {
+        return $this->hasMany(Stock::class);
+    }
 }

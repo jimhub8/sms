@@ -45,8 +45,8 @@
             </v-flex>
         </v-layout>
     </v-container>
-    <Create></Create>
-    <Edit></Edit>
+    <Create />
+    <Edit />
 </div>
 </template>
 

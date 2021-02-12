@@ -2,6 +2,8 @@
 <div>
     <v-container fluid fill-height>
         <v-layout justify-center align-center wrap>
+            <v-flex sm10>
+
             <v-card style="padding: 20px;">
                 <!-- <v-pagination v-model="stock.current_page" :length="stock.last_page" total-visible="5" @input="next_page(stock.path, stock.current_page)" circle v-if="stock.last_page > 1"></v-pagination> -->
                 <v-spacer></v-spacer>
@@ -18,27 +20,34 @@
                 </form>
                 <VDivider />
                 <v-row>
-                    <v-col sm="3" v-if="guard == 'web'">
+                    <v-col sm="2"  xs12 v-if="guard == 'web'">
                         <label for="">Agent</label>
-                        <el-select v-model="form.agent_id" placeholder="Select">
+                        <el-select v-model="form.agent_id" placeholder="Select" clearable filterable style="width:100%">
                             <el-option v-for="item in agents" :key="item.id" :label="item.name" :value="item.id">
                             </el-option>
                         </el-select>
                     </v-col>
-                    <v-col sm="3">
+                    <v-col sm="2" xs12>
+                        <label for="">Product</label>
+                        <el-select v-model="form.product_id" placeholder="Select" clearable filterable style="width:100%">
+                            <el-option v-for="item in products" :key="item.id" :label="item.name" :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </v-col>
+                    <v-col sm="2">
                         <label for="">Start date</label>
                         <el-date-picker v-model="form.start_date" type="date" placeholder="Pick a Date" format="yyyy/MM/dd" value-format="yyyy-MM-dd">
                         </el-date-picker>
                     </v-col>
-                    <v-col sm="3">
+                    <v-col sm="2" offset="1">
                         <label for="">End date</label>
                         <el-date-picker v-model="form.end_date" type="date" placeholder="Pick a Date" format="yyyy/MM/dd" value-format="yyyy-MM-dd">
                         </el-date-picker>
                     </v-col>
-                    <v-col sm="3">
+                    <v-col sm="1" offset="1">
                         <v-tooltip right>
                             <template v-slot:activator="{ on }">
-                                <v-btn icon v-on="on" slot="activator" class="mx-0" @click="filter" style="margin-top: 23px;">
+                                <v-btn icon v-on="on" slot="activator" class="mx-0" @click="filter" style="margin-top: 25px;">
                                     <v-icon color="blue darken-2" small>mdi-filter</v-icon>
                                 </v-btn>
                             </template>
@@ -58,41 +67,22 @@
                                 </template>
                                 <span>Refresh</span>
                             </v-tooltip>
-                            <v-btn color="info" @click="openCreate" text v-if="guard == 'agent'">Update Stock</v-btn>
+                            <v-btn color="info" @click="openCreate" text v-if="guard == 'agent' || user.role == 'Admin'">Update Stock</v-btn>
                             <v-spacer></v-spacer>
                             <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
                         </v-card-title>
                         <v-data-table :headers="headers" :items="stock.data" :search="search" :loading="loading">
                             <template v-slot:item.created_at="{ item }">
-                                <el-tag type="success">{{ item.created_at }}</el-tag>
+                                <el-tag type="primary">{{ item.created_at }}</el-tag>
                             </template>
-                            <!-- <template v-slot:item.actions="{ item }">
-                            <v-tooltip bottom>
-                                <template v-slot:activator="{ on }">
-                                    <v-btn v-on="on" icon class="mx-0" @click="openEdit(item)" slot="activator">
-                                        <v-icon small color="blue darken-2">mdi-pencil</v-icon>
-                                    </v-btn>
-                                </template>
-                                <span>Edit {{ item.name }}</span>
-                            </v-tooltip>
-                            <v-tooltip bottom>
-                                <template v-slot:activator="{ on }">
-                                    <v-btn icon v-on="on" class="mx-0" @click="confirm_delete(item)" slot="activator">
-                                        <v-icon small color="pink darken-2">mdi-delete</v-icon>
-                                    </v-btn>
-                                </template>
-                                <span>Delete {{ item.name }}</span>
-                            </v-tooltip>
-                        </template> -->
                         </v-data-table>
                     </v-card>
                 </v-flex>
             </v-card>
-
+            </v-flex>
         </v-layout>
     </v-container>
     <Create />
-    <!-- <Edit></Edit> -->
 </div>
 </template>
 
@@ -125,6 +115,10 @@ export default {
                 {
                     text: "Agent name",
                     value: "agent.name"
+                },
+                {
+                    text: "Product name",
+                    value: "product.name"
                 },
                 {
                     text: "Opening Stock",
@@ -220,15 +214,23 @@ export default {
             }
             this.$store.dispatch("nextPage", payload);
         },
+        getProducts() {
+            var payload = {
+                model: 'products',
+                update: 'updateProducts'
+            }
+            this.$store.dispatch("getItems", payload);
+        },
     },
     computed: {
-        ...mapState(['stock', 'loading', 'agents'])
+        ...mapState(['stock', 'loading', 'agents', 'products'])
     },
     mounted() {
         // this.$store.dispatch('getStock');
         eventBus.$emit("LoadingEvent");
         this.getAgents();
         this.getStock();
+        this.getProducts();
     },
     created() {
         eventBus.$on("stockEvent", data => {

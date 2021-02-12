@@ -38,9 +38,6 @@ class MessagesController extends Controller
     public function messages_send(Request $request)
     {
         // return $request->all();
-
-
-
         $messages = Messages::whereBetween('created_at', [$request->start_date, $request->end_date])->get();
         // $messages = Messages::all();
 
