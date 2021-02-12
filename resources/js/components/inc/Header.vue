@@ -64,7 +64,7 @@
                             <v-list-item-title> Settings</v-list-item-title>
                         </v-list-item-content>
                     </template>
-                    <router-link to="/agents" v-if="user.role == 'Admin'">
+                    <router-link to="/agents" v-if="user.role == 'Admin' ||  user.role == 'Rider Manager'">
                         <v-list-item>
                             <v-list-item-icon>
                                 <v-icon>mdi-account</v-icon>
