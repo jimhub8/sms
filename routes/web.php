@@ -35,7 +35,8 @@ Route::group(['middleware' => ['auth']], function () {
 Route::group(['middleware' => ['authCheck']], function () {
 
     Route::get('/', function () {
-        return view('dashboard');
+        $org = 'mft';
+        return view('dashboard', compact('org'));
     });
 
     Route::post('sms', 'SmsController@sms')->name('sms');
