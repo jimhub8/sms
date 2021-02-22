@@ -39,6 +39,9 @@ import myStock from './components/agents/stock'
 import myvendors from './components/agents/vendor'
 import myRiders from './components/agents/rider'
 
+import myTracking from './components/waybill/track'
+
+
 
 const routes = [
     { path: '/', component: myCallcenter },
@@ -67,6 +70,6 @@ const app = new Vue({
     router,
     components: {
         myApp, myHeader,
-        myCallcenter, myRider, mySms, myAgents, myProducts, myStock, myvendors, mySmsMult, myRiders
+        myCallcenter, myRider, mySms, myAgents, myProducts, myStock, myvendors, mySmsMult, myRiders,myTracking
     },
 });
