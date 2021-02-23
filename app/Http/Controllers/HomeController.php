@@ -41,7 +41,9 @@ class HomeController extends Controller
             return view('track', compact(['waybill', 'org']));
 
         } catch (\Exception $e) {
-            dd($e);
+            // dd($e);
+
+            abort(404, 'Something went wrong! Please try later');
             return $e->getMessage();
         }
 
