@@ -33,11 +33,11 @@
 </style>
 <body
     class="home page-template-default page page-id-1503 theme-consulting woocommerce-no-js site_layout_los_angeles  header_style_2 vc_sidebar_page eroom-enabled wpb-js-composer js-comp-ver-6.4.1 vc_responsive elementor-default elementor-kit-6896">
-
+    <div id="app">
 
     @yield('content')
 
-
+</div>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <script src="{{ asset('js/theme/core.min.js') }}"></script>

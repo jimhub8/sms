@@ -20,6 +20,65 @@ class HomeController extends Controller
 
     public function waybill(Request $request, $waybill)
     {
+
+
+
+
+
+// dd('track');
+
+// return $waybill;
+        // $org = $request->org;
+        $org = 'speedball';
+
+        // $waybill = [];
+        //     return view('track', compact('waybill'));
+            try {
+
+            $client = new Client();
+
+            $url = env('API_URL') . '/api/order/' . $waybill;
+            // return $url;
+            // $URI = 'http://mail.zoho.com/api/accounts/' . $AccountId . '/messages';
+            $params['headers'] = ['Content-Type' => 'application/json'];
+            // $params['form_params'] = array('fromAddress' => $FromAddress, 'toAddress' => $ToAddress, 'subject' => $Subject, 'content' => $Content);
+            $response = $client->get($url);
+            // dd($response);
+
+            $waybill = json_decode($response->getBody(), true);
+
+            // dd($waybill);
+
+            // $waybill = $waybill['waybillTrackDetailList'][0];
+            // return $waybill;
+
+            return view('track', compact(['waybill', 'org']));
+
+        } catch (\Exception $e) {
+            // dd($e);
+
+            abort(404, 'Something went wrong! Please try later');
+            return $e->getMessage();
+        }
+
+
+
+
+
+        // $waybill = $request->waybill;
+        // $waybill =
+
+
+
+        return view('track', compact(['waybill', 'org']));
+
+    }
+}
+
+
+
+
+        /*
         $org = $request->org;
         // $waybill = [];
         //     return view('track', compact('waybill'));
@@ -46,8 +105,3 @@ class HomeController extends Controller
             abort(404, 'Something went wrong! Please try later');
             return $e->getMessage();
         }
-
-        // $waybill = $request->waybill;
-        // $waybill =
-    }
-}

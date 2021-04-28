@@ -30,7 +30,9 @@ class MessagesController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request->all());
+        // dd($request->file);
+        // $array = Excel::toArray(new MessageImport, $request->file);
+        // dd($array, 'ddd');
         Excel::import(new MessageImport, $request->file);
         return 'uploaded';
     }

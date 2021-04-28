@@ -16,10 +16,13 @@ class MessageImport implements ToModel, WithHeadingRow
      */
     public function model(array $row)
     {
+        $name = $row['name'];
+        $phone = $row['phone'];
+        $address = $row['address'];
         return new Messages([
-            'name'     => $row['name'],
-            'phone'    =>  '0' . $row['phone'],
-            'address' => $row['address'],
+            'name'     => $name,
+            'phone'    =>  '0' . $phone,
+            'address' => $address,
         ]);
     }
 }
