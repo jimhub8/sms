@@ -25,19 +25,22 @@ class HomeController extends Controller
 
 
 
-// dd('track');
+        // dd('track');
 
-// return $waybill;
-        // $org = $request->org;
-        $org = 'speedball';
+        // return $waybill;
+        $org = $request->org;
+        // $org = 'speedball';
 
         // $waybill = [];
         //     return view('track', compact('waybill'));
-            try {
+        try {
 
             $client = new Client();
-
-            $url = env('API_URL') . '/api/order/' . $waybill;
+            if ($org == 'speedball') {
+                $url = env('API_URL_SPEEDBALL') . '/api/order/' . $waybill;
+            } elseif ($org == 'mft') {
+                $url = env('API_URL_MFT') . '/api/order/' . $waybill;
+            }
             // return $url;
             // $URI = 'http://mail.zoho.com/api/accounts/' . $AccountId . '/messages';
             $params['headers'] = ['Content-Type' => 'application/json'];
@@ -53,7 +56,6 @@ class HomeController extends Controller
             // return $waybill;
 
             return view('track', compact(['waybill', 'org']));
-
         } catch (\Exception $e) {
             // dd($e);
 
@@ -71,7 +73,6 @@ class HomeController extends Controller
 
 
         return view('track', compact(['waybill', 'org']));
-
     }
 }
 
