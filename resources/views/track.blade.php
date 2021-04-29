@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US" class="stm-site-preloader">
+<html lang="en-US" class="">
 
 <head>
     <meta charset="UTF-8">
