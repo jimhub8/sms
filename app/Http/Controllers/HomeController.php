@@ -27,11 +27,11 @@ class HomeController extends Controller
         // return $request->all();
         $waybill = $request->waybill;
         $org = $request->org;
-        // $org = 'speedball';
+        // $org = 'speedball'; 
 
         // $waybill = [];
         //     return view('track', compact('waybill'));
-        // try {
+        try {
             $client = new Client();
             if ($org == 'speedball') {
                 $url = env('API_URL_SPEEDBALL') . '/order/' . $waybill;
@@ -53,12 +53,12 @@ class HomeController extends Controller
             return $waybill;
 
             return view('track', compact(['waybill', 'org']));
-        // } catch (\Exception $e) {
-        //     // dd($e);
+        } catch (\Exception $e) {
+            // dd($e);
 
-        //     abort(404, 'Something went wrong! Please try later');
-        //     return $e->getMessage();
-        // }
+            abort(404, $e->getMessage());
+            return $e->getMessage();
+        }
 
 
 
