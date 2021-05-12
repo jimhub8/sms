@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/track', function () {
-    return view('track');
-});
+// Route::get('/track', function () {
+//     return view('track');
+// });
 
 
 Route::get('/sms', 'HomeController@index');
@@ -26,7 +26,8 @@ Route::post('filter_messages', 'MessagesController@filter_messages')->name('filt
 //     return view('dashboard');
 // })->name('dashboard');
 
-Route::get('/waybill/{waybill}', 'HomeController@waybill')->name('waybill');
+Route::post('/waybill', 'HomeController@waybill')->name('waybill');
+Route::get('/track', 'HomeController@track')->name('track');
 
 
 Route::group(['middleware' => ['auth']], function () {

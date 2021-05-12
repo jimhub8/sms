@@ -18,11 +18,77 @@ class HomeController extends Controller
         return view('welcome', compact('user'));
     }
 
-    public function waybill(Request $request, $waybill)
+    public function waybill(Request $request)
     {
 
 
+        // dd('track');
 
+        // return $request->all();
+        $waybill = $request->waybill;
+        $org = $request->org;
+        // $org = 'speedball';
+
+        // $waybill = [];
+        //     return view('track', compact('waybill'));
+        // try {
+            $client = new Client();
+            if ($org == 'speedball') {
+                $url = env('API_URL_SPEEDBALL') . '/order/' . $waybill;
+            } elseif ($org == 'mft') {
+                $url = env('API_URL_MFT') . '/order/' . $waybill;
+            }
+            // return $url;
+            // $URI = 'http://mail.zoho.com/api/accounts/' . $AccountId . '/messages';
+            $params['headers'] = ['Content-Type' => 'application/json'];
+            // $params['form_params'] = array('fromAddress' => $FromAddress, 'toAddress' => $ToAddress, 'subject' => $Subject, 'content' => $Content);
+            $response = $client->get($url);
+            // dd($response);
+
+            $waybill = json_decode($response->getBody(), true);
+
+            // dd($waybill);
+
+            // $waybill = $waybill['waybillTrackDetailList'][0];
+            return $waybill;
+
+            return view('track', compact(['waybill', 'org']));
+        // } catch (\Exception $e) {
+        //     // dd($e);
+
+        //     abort(404, 'Something went wrong! Please try later');
+        //     return $e->getMessage();
+        // }
+
+
+
+
+
+        // $waybill = $request->waybill;
+        // $waybill =
+
+
+
+        return view('track', compact(['waybill', 'org']));
+    }
+
+
+    public function track(Request $request)
+    {
+        $org = $request->org;
+        return view('track', compact('org'));
+    }
+}
+
+
+
+
+        /*
+
+
+
+    public function waybill(Request $request, $waybill)
+    {
 
 
         // dd('track');
@@ -34,12 +100,11 @@ class HomeController extends Controller
         // $waybill = [];
         //     return view('track', compact('waybill'));
         try {
-
             $client = new Client();
             if ($org == 'speedball') {
-                $url = env('API_URL_SPEEDBALL') . '/api/order/' . $waybill;
+                $url = env('API_URL_SPEEDBALL') . '/order/' . $waybill;
             } elseif ($org == 'mft') {
-                $url = env('API_URL_MFT') . '/api/order/' . $waybill;
+                $url = env('API_URL_MFT') . '/order/' . $waybill;
             }
             // return $url;
             // $URI = 'http://mail.zoho.com/api/accounts/' . $AccountId . '/messages';
@@ -74,12 +139,30 @@ class HomeController extends Controller
 
         return view('track', compact(['waybill', 'org']));
     }
-}
 
 
 
 
-        /*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         $org = $request->org;
         // $waybill = [];
         //     return view('track', compact('waybill'));

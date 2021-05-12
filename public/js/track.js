@@ -4029,8 +4029,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['waybill']
+  props: ['org'],
+  data: function data() {
+    return {
+      waybill: {},
+      form: {
+        waybill: ''
+      },
+      searched: false
+    };
+  },
+  methods: {
+    getOrder: function getOrder() {
+      var _this = this;
+
+      console.log(this.$route);
+      axios.post('waybill?org=' + this.org, this.form).then(function (response) {
+        _this.waybill = response.data;
+        _this.searched = true;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getOrder();
+  }
 });
 
 /***/ }),
@@ -40295,42 +40320,66 @@ var render = function() {
       attrs: { width: "600" }
     },
     [
-      _c(
-        "v-card-text",
-        { staticClass: "py-0" },
-        [
-          _c(
-            "v-row",
-            { staticStyle: { background: "#17478c", color: "#fff" } },
+      _c("v-text-field", {
+        attrs: { label: "Track waybill" },
+        on: {
+          keyup: function($event) {
+            if (
+              !$event.type.indexOf("key") &&
+              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+            ) {
+              return null
+            }
+            return _vm.getOrder($event)
+          }
+        },
+        model: {
+          value: _vm.form.waybill,
+          callback: function($$v) {
+            _vm.$set(_vm.form, "waybill", $$v)
+          },
+          expression: "form.waybill"
+        }
+      }),
+      _vm._v(" "),
+      _vm.searched
+        ? _c(
+            "v-card-text",
+            { staticClass: "py-0" },
             [
-              _c("v-col", { attrs: { sm: "6" } }, [
-                _c("b", [_vm._v("Consignor:")]),
-                _vm._v(" " + _vm._s(_vm.waybill.seller.name) + " "),
-                _c("br"),
-                _vm._v(" "),
-                _c("b", [_vm._v("From Location: ")]),
-                _vm._v(_vm._s(_vm.waybill.seller.address)),
-                _c("br")
-              ]),
-              _vm._v(" "),
-              _c("v-col", { attrs: { sm: "6" } }, [
-                _c("b", [_vm._v("Consignee:")]),
-                _vm._v(" " + _vm._s(_vm.waybill.client.name) + " "),
-                _c("br"),
-                _vm._v(" "),
-                _c("b", [_vm._v("To Location: ")]),
-                _vm._v(_vm._s(_vm.waybill.client.name)),
-                _c("br"),
-                _vm._v(" "),
-                _c("b", [_vm._v("Package: ")]),
-                _vm._v("1\n            ")
-              ])
+              _c(
+                "v-row",
+                { staticStyle: { background: "#17478c", color: "#fff" } },
+                [
+                  _c("v-col", { attrs: { sm: "6" } }, [
+                    _c("b", [_vm._v("Consignor:")]),
+                    _vm._v(" " + _vm._s(_vm.waybill.seller.name) + " "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("b", [_vm._v("From Location: ")]),
+                    _vm._v(_vm._s(_vm.waybill.seller.address)),
+                    _c("br")
+                  ]),
+                  _vm._v(" "),
+                  _c("v-col", { attrs: { sm: "6" } }, [
+                    _c("b", [_vm._v("Consignee:")]),
+                    _vm._v(" " + _vm._s(_vm.waybill.client.name) + " "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("b", [_vm._v("To Location: ")]),
+                    _vm._v(_vm._s(_vm.waybill.client.address)),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("b", [_vm._v("Package: ")]),
+                    _vm._v("1\r\n            ")
+                  ])
+                ],
+                1
+              )
             ],
             1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
       _c("v-divider"),
       _vm._v(" "),
@@ -40370,9 +40419,9 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                                " +
+                                    "\r\n                                " +
                                       _vm._s(item.action) +
-                                      "\n                            "
+                                      "\r\n                            "
                                   )
                                 ]
                               ),
@@ -97481,7 +97530,7 @@ var opts = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/jimmy/code/speedball/portal/resources/js/track.js */"./resources/js/track.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\laravel\sms\resources\js\track.js */"./resources/js/track.js");
 
 
 /***/ })

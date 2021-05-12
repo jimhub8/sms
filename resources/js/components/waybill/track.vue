@@ -41,7 +41,9 @@
     </v-card-text>
     -->
 
-    <v-card-text class="py-0">
+    <v-text-field v-model="form.waybill" label="Track waybill" @keyup.enter="getOrder"></v-text-field>
+
+    <v-card-text class="py-0" v-if="searched">
         <v-row style="background: #17478c;color: #fff;">
             <v-col sm="6">
                 <b>Consignor:</b> {{ waybill.seller.name }} <br>
@@ -50,7 +52,7 @@
             </v-col>
             <v-col sm="6">
                 <b>Consignee:</b> {{ waybill.client.name }} <br>
-                <b>To Location: </b>{{ waybill.client.name }}<br>
+                <b>To Location: </b>{{ waybill.client.address }}<br>
                 <b>Package: </b>1
             </v-col>
         </v-row>
@@ -84,6 +86,29 @@
 
 <script>
 export default {
-    props: ['waybill'],
+    props: ['org'],
+    data() {
+        return {
+            waybill: {},
+            form: {
+                waybill: ''
+            },
+            searched: false
+        }
+    },
+
+    methods: {
+        getOrder() {
+            console.log(this.$route)
+            axios.post('waybill?org=' + this.org, this.form).then((response) => {
+                this.waybill = response.data
+                this.searched = true
+            })
+        }
+    },
+    mounted() {
+        this.getOrder()
+    }
+
 }
 </script>
