@@ -60,7 +60,13 @@
     <div class="mobile_header">
         <div class="logo_wrapper clearfix">
             <div class="logo">
-                <a href="/"><img src="/logo/logo.png" style="height: 100px;" alt="MFT" /></a>
+                {{-- <a href="/"><img src="/logo/logo.png" style="height: 100px;" alt="MFT" /></a> --}}
+                
+                @if($org == "speedball")
+                <a href="#"><img src="https://speedballcourier.com/wp-content/uploads/2018/05/logo-white.png" style="height: 100px;" alt="MFT" /></a>
+                @elseif(($org == "mft"))
+                <a href="#"><img src="/logo/logo.png" style="height: 100px;" alt="MFT" /></a>
+                @endif
             </div>
             <div id="menu_toggle">
                 <button></button>

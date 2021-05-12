@@ -1,11 +1,12 @@
 <div>
     <div data-vc-full-width="true" data-vc-full-width-init="false" class="vc_row wpb_row vc_row-fluid third_bg_color">
         @auth
-        <div class="wpb_column vc_column_container vc_col-sm-12">
-            <div class="vc_column-inner ">
-                <div class="wpb_wrapper">
-                    <section class="vc_cta3-container">
-                        <div class="vc_general vc_cta3 third_bg_color vc_cta3-style-flat vc_cta3-shape-square vc_cta3-align-left vc_cta3-color-classic vc_cta3-icon-size-md vc_cta3-actions-right vc_custom_1609935144668">
+            <div class="wpb_column vc_column_container vc_col-sm-12">
+                <div class="vc_column-inner ">
+                    <div class="wpb_wrapper">
+                        <section class="vc_cta3-container">
+                            <div
+                                class="vc_general vc_cta3 third_bg_color vc_cta3-style-flat vc_cta3-shape-square vc_cta3-align-left vc_cta3-color-classic vc_cta3-icon-size-md vc_cta3-actions-right vc_custom_1609935144668">
                                 <div class="vc_cta3_content-container">
                                     <div class="vc_cta3-content">
                                         <header class="vc_cta3-content-header">
@@ -24,26 +25,46 @@
                                     </div>
                                 </div>
                             </div>
-                    </section>
+                        </section>
+                    </div>
                 </div>
             </div>
-        </div>
         @endauth
 
     </div>
     <div class="vc_row-full-width vc_clearfix"></div>
-    @if($org == 'mft')
-    <div data-vc-full-width="true" data-vc-full-width-init="false"
-        class="vc_row wpb_row vc_row-fluid vc_custom_1609861415160 vc_row-has-fill" style="background-image: url(/logo/mft.jpg)">
 
-        @elseif($org == 'speedball')
+
+
+    @if ($org == 'mft')
         <div data-vc-full-width="true" data-vc-full-width-init="false"
-            class="vc_row wpb_row vc_row-fluid vc_custom_1609861415160 vc_row-has-fill" style="background-image: url(/logo/speedball.jpg)">
-            @endif
-            <div class="wpb_column vc_column_container vc_col-sm-12">
-                <div class="vc_column-inner ">
-                    <div class="wpb_wrapper"></div>
+            class="vc_row wpb_row vc_row-fluid vc_custom_1609861415160 vc_row-has-fill"
+            style="background-image: url(/logo/mft.jpg)">
+
+            <div data-vc-full-width="true" data-vc-full-width-init="false"
+                class="vc_row wpb_row vc_row-fluid vc_custom_1609861415160 vc_row-has-fill"
+                style="background-image: url(/logo/speedball.jpg)">
+                <div class="wpb_column vc_column_container vc_col-sm-12">
+                    <div class="vc_column-inner ">
+                        <div class="wpb_wrapper"></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @elseif($org == 'speedball')
+        <div data-vc-full-width="true" data-vc-full-width-init="false"
+            class="vc_row wpb_row vc_row-fluid vc_custom_1609861415160 vc_row-has-fill"
+            style="background-image: url(/logo/mft.jpg)">
+
+            <div data-vc-full-width="true" data-vc-full-width-init="false"
+                class="vc_row wpb_row vc_row-fluid vc_custom_1609861415160 vc_row-has-fill"
+                style="background-image: url(/logo/speedball.jpg)">
+                <div class="wpb_column vc_column_container vc_col-sm-12">
+                    <div class="vc_column-inner ">
+                        <div class="wpb_wrapper"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+</div>
