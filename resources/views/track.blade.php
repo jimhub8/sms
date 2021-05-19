@@ -6,11 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="profile" href="http://gmpg.org/xfn/11">
+
+    
+    @if($org == "speedball")
+    <title>Speedball PORTAL</title>
+    <link rel="icon" href="/logo/logo1.png">
+    @elseif(($org == "mft"))
     <title>MFT PORTAL</title>
+    <link rel="icon" href="/logo/logo.png">
+    @endif
     {{-- <link rel='dns-prefetch' href='//js.stripe.com' /> --}}
     {{-- <link rel='dns-prefetch' href='//fonts.googleapis.com' /> --}}
     {{-- <link rel='dns-prefetch' href='//s.w.org' /> --}}
-    <link rel="icon" href="/logo/logo.png">
 
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
