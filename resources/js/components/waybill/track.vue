@@ -1,11 +1,13 @@
 <template>
 <div style="padding: 20px">
     <v-card class="mx-auto" width="600" style="margin-bottom: 20px;">
-        <v-toolbar width="600" style="margin:auto;padding-top: 20px">
-            <!-- <v-progress-linear :active="loading" :indeterminate="loading" absolute bottom color="primary"></v-progress-linear>
-        <v-text-field v-model="form.waybill" label="Track waybill" @keyup.enter="getOrder"></v-text-field> -->
-
+        <v-toolbar width="600" style="margin:auto;padding: 7px 0">
             <v-text-field v-model="form.waybill" color="primary" :loading="loading" :disabled="loading" label="Track waybill" @keyup.enter="getOrder"></v-text-field>
+            <v-btn class="" color="primary" dark outlined rounded small style="margin-left: 15px" @click="getOrder">
+                <v-icon dark>mdi-magnify</v-icon>
+                Search
+            </v-btn>
+
         </v-toolbar>
         <v-card-text class="py-0" v-if="searched">
             <v-row style="background: #17478c;color: #fff;">
@@ -81,8 +83,8 @@ export default {
                 this.waybill = response.data
                 this.searched = true
             }).catch((error) => {
-                this.text = 'Order not found' 
-                this.snackbar = true 
+                this.text = 'Order not found'
+                this.snackbar = true
                 this.searched = false
                 this.loading = false
             })

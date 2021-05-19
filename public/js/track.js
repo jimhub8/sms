@@ -3998,6 +3998,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['org'],
   data: function data() {
@@ -40308,7 +40310,7 @@ var render = function() {
           _c(
             "v-toolbar",
             {
-              staticStyle: { margin: "auto", "padding-top": "20px" },
+              staticStyle: { margin: "auto", padding: "7px 0" },
               attrs: { width: "600" }
             },
             [
@@ -40337,7 +40339,29 @@ var render = function() {
                   },
                   expression: "form.waybill"
                 }
-              })
+              }),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  staticStyle: { "margin-left": "15px" },
+                  attrs: {
+                    color: "primary",
+                    dark: "",
+                    outlined: "",
+                    rounded: "",
+                    small: ""
+                  },
+                  on: { click: _vm.getOrder }
+                },
+                [
+                  _c("v-icon", { attrs: { dark: "" } }, [
+                    _vm._v("mdi-magnify")
+                  ]),
+                  _vm._v("\r\n                Search\r\n            ")
+                ],
+                1
+              )
             ],
             1
           ),
