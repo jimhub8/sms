@@ -3,7 +3,7 @@
         <div class="container">
             <div class="logo media-left media-middle">
                 @if($org == "speedball")
-                <a href="#"><img src="https://speedballcourier.com/wp-content/uploads/2018/05/logo-white.png" style="height: 100px;" alt="MFT" /></a>
+                <a href="#"><img src="https://speedballcourier.com/wp-content/uploads/2021/05/sb_black.png" style="height: 100px;" alt="SPEEDBALL" /></a>
                 @elseif(($org == "mft"))
                 <a href="#"><img src="/logo/logo.png" style="height: 100px;" alt="MFT" /></a>
                 @endif
@@ -61,9 +61,9 @@
         <div class="logo_wrapper clearfix">
             <div class="logo">
                 {{-- <a href="/"><img src="/logo/logo.png" style="height: 100px;" alt="MFT" /></a> --}}
-                
+
                 @if($org == "speedball")
-                <a href="#"><img src="https://speedballcourier.com/wp-content/uploads/2018/05/logo-white.png" style="height: 100px;" alt="MFT" /></a>
+                <a href="#"><img src="https://speedballcourier.com/wp-content/uploads/2021/05/sb_black.png" style="height: 100px;" alt="SPEEDBALL" /></a>
                 @elseif(($org == "mft"))
                 <a href="#"><img src="/logo/logo.png" style="height: 100px;" alt="MFT" /></a>
                 @endif
