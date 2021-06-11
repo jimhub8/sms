@@ -16,11 +16,11 @@
                     <b>From Location: </b>{{ waybill.seller.address }}<br>
                     <!-- <b>Package: </b>1 -->
                 </v-col>
-                <v-col sm="6">
+                <!-- <v-col sm="6">
                     <b>Consignee:</b> {{ waybill.client.name }} <br>
                     <b>To Location: </b>{{ waybill.client.address }}<br>
                     <b>Package: </b>1
-                </v-col>
+                </v-col> -->
             </v-row>
         </v-card-text>
         <v-divider></v-divider>

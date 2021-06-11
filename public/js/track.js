@@ -40358,7 +40358,7 @@ var render = function() {
                   _c("v-icon", { attrs: { dark: "" } }, [
                     _vm._v("mdi-magnify")
                   ]),
-                  _vm._v("\r\n                Search\r\n            ")
+                  _vm._v("\n                Search\n            ")
                 ],
                 1
               )
@@ -40383,19 +40383,6 @@ var render = function() {
                         _c("b", [_vm._v("From Location: ")]),
                         _vm._v(_vm._s(_vm.waybill.seller.address)),
                         _c("br")
-                      ]),
-                      _vm._v(" "),
-                      _c("v-col", { attrs: { sm: "6" } }, [
-                        _c("b", [_vm._v("Consignee:")]),
-                        _vm._v(" " + _vm._s(_vm.waybill.client.name) + " "),
-                        _c("br"),
-                        _vm._v(" "),
-                        _c("b", [_vm._v("To Location: ")]),
-                        _vm._v(_vm._s(_vm.waybill.client.address)),
-                        _c("br"),
-                        _vm._v(" "),
-                        _c("b", [_vm._v("Package: ")]),
-                        _vm._v("1\r\n                ")
                       ])
                     ],
                     1
@@ -40446,9 +40433,9 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\r\n                                    " +
+                                            "\n                                    " +
                                               _vm._s(item.action) +
-                                              "\r\n                                "
+                                              "\n                                "
                                           )
                                         ]
                                       ),
@@ -40496,7 +40483,7 @@ var render = function() {
             expression: "snackbar"
           }
         },
-        [_vm._v("\r\n        " + _vm._s(_vm.text) + "\r\n    ")]
+        [_vm._v("\n        " + _vm._s(_vm.text) + "\n    ")]
       )
     ],
     1
@@ -97577,7 +97564,7 @@ var opts = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\laravel\sms\resources\js\track.js */"./resources/js/track.js");
+module.exports = __webpack_require__(/*! C:\sites\laravel\portal\resources\js\track.js */"./resources/js/track.js");
 
 
 /***/ })
