@@ -3,9 +3,11 @@
         <div class="container">
             <div class="logo media-left media-middle">
                 @if($org == "speedball")
-                <a href="#"><img src="https://speedballcourier.com/wp-content/uploads/2021/05/sb_black.png" style="height: 100px;" alt="SPEEDBALL" /></a>
+                <a href="#"><img src="/logo/splogo.png" style="height: 100px;" alt="SPEEDBALL" /></a>
                 @elseif(($org == "mft"))
                 <a href="#"><img src="/logo/logo.png" style="height: 100px;" alt="MFT" /></a>
+                @elseif(($org == "360"))
+                    <a href="#"><img src="/logo/360.png" style="height: 100px;" alt="360" /></a>
                 @endif
             </div>
             @auth

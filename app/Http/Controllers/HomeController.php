@@ -27,7 +27,7 @@ class HomeController extends Controller
         // return $request->all();
         $waybill = $request->waybill;
         $org = $request->org;
-        // $org = 'speedball'; 
+        // $org = 'speedball';
 
         // $waybill = [];
         //     return view('track', compact('waybill'));
@@ -37,6 +37,8 @@ class HomeController extends Controller
                 $url = env('API_URL_SPEEDBALL') . '/order/' . $waybill;
             } elseif ($org == 'mft') {
                 $url = env('API_URL_MFT') . '/order/' . $waybill;
+            } elseif ($org == '360') {
+                $url = env('API_URL_360') . '/order/' . $waybill;
             }
             // return $url;
             // $URI = 'http://mail.zoho.com/api/accounts/' . $AccountId . '/messages';
