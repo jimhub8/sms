@@ -7,13 +7,16 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="profile" href="http://gmpg.org/xfn/11">
 
-    
+
     @if($org == "speedball")
     <title>Speedball PORTAL</title>
     <link rel="icon" href="/logo/logo1.png">
     @elseif(($org == "mft"))
     <title>MFT PORTAL</title>
     <link rel="icon" href="/logo/logo.png">
+    @elseif(($org == "360"))
+    <title>360 PORTAL</title>
+    <link rel="icon" href="/logo/360.png">
     @endif
     {{-- <link rel='dns-prefetch' href='//js.stripe.com' /> --}}
     {{-- <link rel='dns-prefetch' href='//fonts.googleapis.com' /> --}}
