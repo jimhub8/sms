@@ -42,7 +42,7 @@ class Sms extends Model
         // $username = 'speedball'; // use 'sandbox' for development in the test environment
         // $apiKey   = '5c89888737070cd26f873a41cd8ca9fd99402a4cd2c066d0eb75fd406a4de358'; // Live
 
-        $AT       = new AfricasTalking($username, $apiKey);
+        $AT = new AfricasTalking($username, $apiKey);
         // Get one of the services
         $sms      = $AT->sms();
         // Use the service

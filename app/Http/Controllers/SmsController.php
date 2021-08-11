@@ -14,6 +14,7 @@ class SmsController extends Controller
             'message' => 'required'
         ]);
         $sms = new Sms();
+        
         $sms->sms($request->phone, $request->message);
         return $sms;
     }
