@@ -22,7 +22,7 @@ class MessageImport implements ToModel, WithHeadingRow
         $address = $row['address'];
 
         $clean = new Sms();
-        $clean->clean($phone);
+        $phone = $clean->clean($phone);
         return new Messages([
             'name'     => $name,
             'phone'    => $phone,
