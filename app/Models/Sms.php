@@ -13,8 +13,9 @@ class Sms extends Model
         // $phone = '+254731090832';
         // $phone = '254711379383';
         // $username = 'sandbox'; // use 'sandbox' for development in the test environment
-        // $apiKey   = 'f40e36a71eb3081324cdd6f6dbb9195d2ff72f7a80fca78a3fbb5e988b15304b'; // use your sandbox app API key for development in the test environment
+        // $apiKey   = 'bc3b2ba2926a52f1cb88e16b0e30c5bf0d7d5538862de6a94f7d20a0871853f9'; // use your sandbox app API key for development in the test environment
 
+        $phone = $this->clean($phone);
         $username = 'speedball'; // use 'sandbox' for development in the test environment
         $apiKey   = '5c89888737070cd26f873a41cd8ca9fd99402a4cd2c066d0eb75fd406a4de358'; // Live
 
@@ -34,10 +35,11 @@ class Sms extends Model
 
     public function sms_sandbox($phone, $message)
     {
+        $phone = $this->clean($phone);
         // dd($phone);
         $phone = '+254731090832';
         $username = 'sandbox'; // use 'sandbox' for development in the test environment
-        $apiKey   = 'f40e36a71eb3081324cdd6f6dbb9195d2ff72f7a80fca78a3fbb5e988b15304b'; // use your sandbox app API key for development in the test environment
+        $apiKey   = 'bc3b2ba2926a52f1cb88e16b0e30c5bf0d7d5538862de6a94f7d20a0871853f9'; // use your sandbox app API key for development in the test environment
 
         // $username = 'speedball'; // use 'sandbox' for development in the test environment
         // $apiKey   = '5c89888737070cd26f873a41cd8ca9fd99402a4cd2c066d0eb75fd406a4de358'; // Live
@@ -56,6 +58,27 @@ class Sms extends Model
         // print_r($result);
     }
 
+
+
+    public function clean($phone)
+    {
+        $string = str_replace(' ', '', $phone);
+
+        $string = preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+        $p_length = strlen($string);
+        $str = (int)mb_substr($string, 0, 1);
+
+        if ($p_length == 9 && $str == 7) {
+            $phone_no = '254' . $string;
+        } elseif ($p_length == 10 && $str == 0) {
+            $str = substr($string, 1);
+            $phone_no = '254' . $str;
+        } else {
+            $phone_no = $string;
+        }
+
+        return $phone_no;
+    }
 
 }
 

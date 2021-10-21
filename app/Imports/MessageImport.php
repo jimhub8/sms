@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Messages;
+use App\Models\Sms;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -19,9 +20,12 @@ class MessageImport implements ToModel, WithHeadingRow
         $name = $row['name'];
         $phone = $row['phone'];
         $address = $row['address'];
+
+        $clean = new Sms();
+        $clean->clean($phone);
         return new Messages([
             'name'     => $name,
-            'phone'    =>  '0' . $phone,
+            'phone'    => $phone,
             'address' => $address,
         ]);
     }

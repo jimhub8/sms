@@ -19,6 +19,7 @@ class CreateMessagesTable extends Migration
             $table->string('phone');
             $table->string('address')->nullable();
             $table->string('product')->nullable();
+            $table->boolean('sent')->default(false);
             $table->timestamps();
         });
     }

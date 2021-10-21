@@ -60,12 +60,13 @@ class MessagesController extends Controller
             //     $sms->sms_sandbox($message->phone, $message_);
             // }
             // return;
+            Messages::find($message->id)->update(['sent' => true]);
         }
         return;
     }
 
     public function filter_messages(Request $request)
     {
-        return Messages::whereBetween('created_at', [$request->start_date, $request->end_date])->get();
+        return Messages::where('sent', false)->whereBetween('created_at', [$request->start_date, $request->end_date])->get();
     }
 }
