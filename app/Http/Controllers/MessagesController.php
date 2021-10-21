@@ -50,18 +50,17 @@ class MessagesController extends Controller
             $raw_message = str_replace("{{ Client Address }}", $message->address, $raw_message);
             $raw_message = str_replace("{{ Client Phone }}", $message->phone, $raw_message);
             // return $raw_message;
-            // Log::debug('************');
-            // Log::debug($raw_message);
-            // Log::debug('************');
             $sms = new Sms();
             $message_ = $raw_message;
             // $sms->sms_sandbox($message->phone, $message_);
             $sms->sms($message->phone, $message_);
+            $messages = Messages::find($message->id);
+            $message->sent = true;
+            $message->save();
             // if ($key < 5) {
             //     $sms->sms_sandbox($message->phone, $message_);
             // }
             // return;
-            Messages::find($message->id)->update(['sent' => true]);
         }
         return;
     }
