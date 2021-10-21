@@ -69,6 +69,14 @@
                         </el-date-picker>
                     </v-flex>
                     <v-flex sm2 style="margin-top: 30px" offset-sm1>
+                        <v-tooltip bottom>
+                            <template v-slot:activator="{ on }">
+                                <v-btn icon v-on="on" slot="activator" class="mx-0" href="/template/sms.xlsx">
+                                    <v-icon color="blue darken-2" small>mdi-download</v-icon>
+                                </v-btn>
+                            </template>
+                            <span>Download</span>
+                        </v-tooltip>
                         <!-- <v-btn color="primary" text @click="send" :loading="loading" :disabled="loading">Send Messages</v-btn> -->
                         <v-tooltip bottom>
                             <template v-slot:activator="{ on }">
