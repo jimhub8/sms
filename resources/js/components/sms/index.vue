@@ -11,6 +11,11 @@
                 <v-divider></v-divider>
                 <v-card-text>
                     <v-layout row wrap>
+
+                        <v-flex sm12>
+                            <el-radio v-model="form.org" label="MFT">MFT</el-radio>
+                            <el-radio v-model="form.org" label="Speedball">Speedball</el-radio>
+                        </v-flex>
                         <!-- <v-flex sm12>
                             <v-select :items="items" label="Status" @change="mess_type"></v-select>
                         </v-flex> -->
@@ -64,7 +69,8 @@ export default {
             items: ['Not Picking', 'Not Available', 'Busy'],
             form: {
                 phone: '',
-                message: ''
+                message: '',
+                org: 'MFT'
             },
             message: '',
             color: 'black',

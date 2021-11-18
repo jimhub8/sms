@@ -16,7 +16,7 @@ class SmsController extends Controller
         $sms = new Sms();
 
         // $sms->sms_sandbox($request->phone, $request->message);
-        $sms->sms($request->phone, $request->message);
+        $sms->sms($request->phone, $request->message, $request->org);
         return $sms;
     }
 }
