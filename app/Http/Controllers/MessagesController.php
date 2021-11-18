@@ -39,7 +39,7 @@ class MessagesController extends Controller
 
     public function messages_send(Request $request)
     {
-        // return $request->all();
+        return $request->all();
         $messages = Messages::whereBetween('created_at', [$request->start_date, $request->end_date])->get();
         // $messages = Messages::all();
 
@@ -53,7 +53,7 @@ class MessagesController extends Controller
             $sms = new Sms();
             $message_ = $raw_message;
             // $sms->sms_sandbox($message->phone, $message_);
-            $sms->sms($message->phone, $message_);
+            $sms->sms($message->phone, $message_, $request->org);
             $messages = Messages::find($message->id);
             $message->sent = true;
             $message->save();

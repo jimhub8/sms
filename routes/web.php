@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('/sms', 'HomeController@index');
 Route::post('filter_messages', 'MessagesController@filter_messages')->name('filter_messages');
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -32,8 +31,10 @@ Route::get('/track', 'HomeController@track')->name('track');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/portal', 'HomeController@portal');
+    Route::get('/sms', 'HomeController@index');
 });
 Route::group(['middleware' => ['authCheck']], function () {
+
 
     Route::get('/', function () {
         $org = 'mft';

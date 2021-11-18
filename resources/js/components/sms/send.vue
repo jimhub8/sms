@@ -8,6 +8,11 @@
             <v-card-text>
                 <v-container>
                     <v-row>
+
+                        <v-col cols="12" sm="12" md="12">
+                            <el-radio v-model="form.org" label="MFT">MFT</el-radio>
+                            <el-radio v-model="form.org" label="Speedball">Speedball</el-radio>
+                        </v-col>
                         <v-col cols="12" sm="12" md="12">
                             <el-select v-model="opt" placeholder="Select" @change="text_update">
                                 <el-option v-for="item in options" :key="item.value" :label="item.value" :value="item.value">
@@ -15,7 +20,7 @@
                             </el-select>
                         </v-col>
                         <v-col cols="12" sm="12" md="12">
-                            <v-textarea label="Message" v-model="message"></v-textarea>
+                            <v-textarea label="Message" v-model="form.message"></v-textarea>
                         </v-col>
                     </v-row>
                 </v-container>
@@ -37,29 +42,30 @@
 
 <script>
 export default {
-    props: ['form', 'messages'],
+    props: ['messages'],
     data: () => ({
         dialog: false,
         loading: false,
         opt: '',
-
-        message: '',
-
-        options: [{
-            value: '{{ Client Name }}'
-        }, {
-            value: '{{ Client Phone }}'
-        }, {
-            value: '{{ Client Address }}'
+        form: {
+            message: '',
+            org: 'MFT'
         },
-        // {
-        //     value: '{{ Product }}'
-        // }
+        options: [{
+                value: '{{ Client Name }}'
+            }, {
+                value: '{{ Client Phone }}'
+            }, {
+                value: '{{ Client Address }}'
+            },
+            // {
+            //     value: '{{ Product }}'
+            // }
         ],
     }),
     methods: {
         send() {
-            this.form.message = this.message
+            // this.form.message = this.message
             // this.loading_message = "Sending messages ... Please wait";
             this.loading = true;
             axios

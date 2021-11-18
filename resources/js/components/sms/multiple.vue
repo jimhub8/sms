@@ -1,63 +1,9 @@
 <template>
 <v-container fluid fill-height>
-    <!-- <v-layout justify-center align-center wrap>
-        <v-card style="padding: 20px">
-
-            <v-card-text>
-
-                <v-layout row wrap>
-                    <v-flex sm3>
-                        <label for="">Start Date</label>
-                        <el-date-picker v-model="form.start_date" type="date" placeholder="Pick a Date" format="yyyy/MM/dd" value-format="yyyy-MM-dd">
-                        </el-date-picker>
-                    </v-flex>
-                    <v-flex sm3>
-                        <label for="">End Date</label>
-                        <el-date-picker v-model="form.end_date" type="date" placeholder="Pick a Date" format="yyyy/MM/dd" value-format="yyyy-MM-dd">
-                        </el-date-picker>
-                    </v-flex>
-                </v-layout>
-
-                <el-upload class="upload-demo" ref="upload" action="/messages" :auto-upload="false" :headers="item_header">
-                    <el-button slot="trigger" size="small" type="primary">select file</el-button>
-                    <el-button style="margin-left: 10px" size="small" type="success" @click="submitUpload">upload to server</el-button>
-                    <div class="el-upload__tip" slot="tip">
-                        csv/xlsx files
-                    </div>
-                </el-upload>
-                <v-divider></v-divider>
-                <v-tooltip bottom>
-                    <template v-slot:activator="{ on, attrs }">
-                        <v-btn icon v-bind="attrs" v-on="on" @click="getMessages" small>
-                            <v-icon color="primary"> mdi-refresh </v-icon>
-                        </v-btn>
-                    </template>
-                    <span>Get data</span>
-                </v-tooltip>
-
-                <v-spacer></v-spacer>
-                <v-btn color="primary" text @click="send" :loading="loading" :disabled="loading">Send Messages</v-btn>
-
-                <v-data-table :headers="headers" :items="messages" :search="search"></v-data-table>
-            </v-card-text>
-
-        </v-card>
-    </v-layout> -->
-
     <v-layout justify-center align-center wrap>
         <v-flex sm9 offset-sm3>
             <v-card style="height: 100px; padding-top: 20px">
                 <v-layout row>
-                    <!-- <v-flex sm1 style="margin-left: 10px;">
-                        <v-tooltip right>
-                            <template v-slot:activator="{ on }">
-                                <v-btn icon v-on="on" slot="activator" class="mx-0" @click="getMessages">
-                                    <v-icon color="blue darken-2" small>mdi-refresh</v-icon>
-                                </v-btn>
-                            </template>
-                            <span>Refresh</span>
-                        </v-tooltip>
-                    </v-flex> -->
                     <v-flex sm2 style="margin-left: 10px">
                         <label for="">Start Date</label>
                         <el-date-picker v-model="form.start_date" type="date" placeholder="Pick a Date" format="yyyy/MM/dd" value-format="yyyy-MM-dd">
@@ -71,20 +17,19 @@
                     <v-flex sm2 style="margin-top: 30px" offset-sm1>
                         <v-tooltip bottom>
                             <template v-slot:activator="{ on }">
+                                <v-btn icon v-on="on" slot="activator" class="mx-0" @click="filter">
+                                    <v-icon color="blue darken-2" small>mdi-magnify</v-icon>
+                                </v-btn>
+                            </template>
+                            <span>Filter</span>
+                        </v-tooltip>
+                        <v-tooltip bottom>
+                            <template v-slot:activator="{ on }">
                                 <v-btn icon v-on="on" slot="activator" class="mx-0" href="/template/sms.xlsx">
                                     <v-icon color="blue darken-2" small>mdi-download</v-icon>
                                 </v-btn>
                             </template>
                             <span>Download</span>
-                        </v-tooltip>
-                        <!-- <v-btn color="primary" text @click="send" :loading="loading" :disabled="loading">Send Messages</v-btn> -->
-                        <v-tooltip bottom>
-                            <template v-slot:activator="{ on }">
-                                <v-btn icon v-on="on" slot="activator" class="mx-0" @click="filter">
-                                    <v-icon color="blue darken-2" small>mdi-filter</v-icon>
-                                </v-btn>
-                            </template>
-                            <span>Filter</span>
                         </v-tooltip>
                         <v-tooltip bottom v-if="send_sms">
                             <template v-slot:activator="{ on }">
@@ -216,7 +161,7 @@ export default {
         },
     },
     mounted() {
-        this.getMessages();
+        // this.getMessages();
     },
 };
 </script>
