@@ -45,7 +45,7 @@
                                                     <h5 style="font-size:22px;line-height:46px"
                                                         class="font-color_base no_stripe">FINANCE &amp; HR</h5>
                                                     <ul class="list-group">
-                                                        <li><a href="https://forms.gle/xDHw1sjDticAcMVv7"
+                                                        <li><a href="https://docs.google.com/forms/d/1EvqIjB2IVw-2UDkW1rYvR-uqBu5PVoehndCOsVg5iYo/prefill"
                                                                 style="line-height: 30px; color: #000000;"
                                                                 target="Leave">LEAVE
                                                                 APPLICATION</a></li>
