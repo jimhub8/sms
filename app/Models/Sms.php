@@ -19,7 +19,7 @@ class Sms extends Model
         $phone = $this->clean($phone);
         if ($org == 'MFT') {
             $username = 'MFT'; // use 'sandbox' for development in the test environment
-            $apiKey = '698cde763bf17efe6b06529b472ddab0c03b66c36b9161e9360e83657317e698'; // Live
+            $apiKey = 'f37b958fa9ad12a939eec4435141c9c8a3b48f1895840896c87c7aa72dee7612'; // Live
         } elseif ($org == 'Speedball') {
             $username = 'speedball'; // use 'sandbox' for development in the test environment
             $apiKey   = '5c89888737070cd26f873a41cd8ca9fd99402a4cd2c066d0eb75fd406a4de358'; // Live
@@ -27,18 +27,20 @@ class Sms extends Model
             return;
         }
 
+        // dd($username, $apiKey);
+
         $AT = new AfricasTalking($username, $apiKey);
         // Get one of the services
         $sms = $AT->sms();
         // Use the service
         $result = $sms->send([
-            'enqueue' => true,
+            // 'enqueue' => true,
             'from'    => $username,
             'to'      => $phone,
             'message' => $message
         ]);
-        return $result;
-        // print_r($result);
+        // return $result;
+        print_r($result);
     }
 
     public function sms_sandbox($phone, $message)
