@@ -11,12 +11,15 @@ class SmsController extends Controller
     {
         $request->validate([
             'phone' => 'required',
-            'message' => 'required'
+            // 'message' => 'required'
         ]);
         $sms = new Sms();
+        $phone = preg_split("/[\r\n,]+/", $request->phone, -1, PREG_SPLIT_NO_EMPTY);
 
-        // $sms->sms_sandbox($request->phone, $request->message);
-        $sms->sms($request->phone, $request->message, $request->org);
+        // $phone = explode(',', $request->phone);
+
+        // $sms->sms_sandbox($phone, $request->message);
+        $sms->sms($phone, $request->message, $request->org);
         return $sms;
     }
 }

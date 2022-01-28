@@ -24,7 +24,12 @@
                             <small class="has-text-danger" v-if="errors.name">{{ errors.name[0] }}</small>
                         </v-flex> -->
                         <v-flex sm12>
-                            <v-text-field v-model="form.phone" label="Phone Number" required></v-text-field>
+                            <v-textarea v-model="form.phone" color="blue">
+                                <div slot="label">
+                                    Phone numbers
+                                </div>
+                            </v-textarea>
+                            <!-- <v-text-field v-model="form.phone" label="Phone Number" required></v-text-field> -->
                             <small class="has-text-danger" v-if="errors.phone">{{ errors.phone[0] }}</small>
                         </v-flex>
                         <!-- <v-flex sm12>
