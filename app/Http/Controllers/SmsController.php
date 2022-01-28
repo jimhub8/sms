@@ -11,7 +11,7 @@ class SmsController extends Controller
     {
         $request->validate([
             'phone' => 'required',
-            // 'message' => 'required'
+            'message' => 'required'
         ]);
         $sms = new Sms();
         $phone = preg_split("/[\r\n,]+/", $request->phone, -1, PREG_SPLIT_NO_EMPTY);
