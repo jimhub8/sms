@@ -4001,7 +4001,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['org'],
+  props: ['org', 'tracking_no'],
   data: function data() {
     return {
       text: '',
@@ -4021,8 +4021,8 @@ __webpack_require__.r(__webpack_exports__);
       var headers = {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       };
-      this.loading = true;
-      console.log(this.$route);
+      this.loading = true; // console.log(this.$route)
+
       axios.post('waybill?org=' + this.org, this.form, {
         headers: headers
       }).then(function (response) {
@@ -4037,7 +4037,12 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
-  mounted: function mounted() {// this.getOrder()
+  mounted: function mounted() {
+    if (this.tracking_no) {
+      this.form.waybill = this.tracking_no;
+    } // console.log(this.$route.params);
+    // this.getOrder()
+
   }
 });
 

@@ -74,7 +74,8 @@ class HomeController extends Controller
     public function track(Request $request)
     {
         $org = $request->org;
-        return view('track', compact('org'));
+        $tracking_no = $request->tracking_no;
+        return view('track', compact('org', 'tracking_no'));
     }
 }
 

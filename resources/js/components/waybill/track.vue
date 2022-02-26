@@ -55,7 +55,7 @@
 
 <script>
 export default {
-    props: ['org'],
+    props: ['org', 'tracking_no'],
     data() {
         return {
             text: '',
@@ -75,7 +75,8 @@ export default {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
             this.loading = true
-            console.log(this.$route)
+            // console.log(this.$route)
+
             axios.post('waybill?org=' + this.org, this.form, {
                 headers: headers
             }).then((response) => {
@@ -91,6 +92,10 @@ export default {
         }
     },
     mounted() {
+        if (this.tracking_no) {
+            this.form.waybill = this.tracking_no
+        }
+        // console.log(this.$route.params);
         // this.getOrder()
     }
 

@@ -50,7 +50,7 @@
             <div id="fullpage" class="content_wrapper">
                 @include('inc.header')
                 <v-app style="margin-top: 40px">
-                    <my-tracking :org="{{ json_encode($org) }}" />
+                    <my-tracking :org="{{ json_encode($org) }}" :tracking_no="{{ json_encode($tracking_no) }}" />
                 </v-app>
 
                 <div class="vc_row-full-width vc_clearfix"></div>
