@@ -10903,3 +10903,12 @@ a.text-dark:focus {
   }
 }
 
+.logo a img {
+    height: 64px !important;
+}
+
+.wpb_row {
+    height: 60vh !important;
+    margin-top: 100px !important;
+}
+
