@@ -585,3 +585,13 @@ a{
 a:hover {
     color: #f08c25 !important;
 }
+
+
+.logo a img {
+    height: 64px !important;
+}
+
+.wpb_row {
+    height: 60vh !important;
+    margin-top: 100px !important;
+}
