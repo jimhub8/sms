@@ -507,7 +507,8 @@ h6,
     /* background-image: url(/logo/bg-why.jpg) !important; */
     /* background-position: center !important; */
     background-position: 0px -220px !important;
-    height: 250px;
+    height: 65vh !important;
+    margin-top: 100px !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
 }
@@ -589,9 +590,4 @@ a:hover {
 
 .logo a img {
     height: 64px !important;
-}
-
-.wpb_row {
-    height: 60vh !important;
-    margin-top: 100px !important;
 }
