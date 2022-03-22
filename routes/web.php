@@ -27,6 +27,7 @@ Route::post('filter_messages', 'MessagesController@filter_messages')->name('filt
 
 Route::post('/waybill', 'HomeController@waybill')->name('waybill');
 // Route::get('/track', 'HomeController@track')->name('track');
+Route::get('/order', 'HomeController@track')->name('track');
 
 
 Route::group(['middleware' => ['auth']], function () {
