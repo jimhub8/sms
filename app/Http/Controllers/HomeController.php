@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Http\Controllers;
@@ -76,6 +77,12 @@ class HomeController extends Controller
         $org = $request->org;
         $tracking_no = $request->tracking_no;
         return view('track', compact('org', 'tracking_no'));
+    }
+    public function speedball_track(Request $request)
+    {
+        $org = $request->org;
+        $tracking_no = $request->tracking_no;
+        return view('track_2', compact('org', 'tracking_no'));
     }
 }
 
