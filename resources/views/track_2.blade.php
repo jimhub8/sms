@@ -49,7 +49,7 @@
         <div id="wrapper">
             <div id="fullpage" class="content_wrapper">
                 {{-- @include('inc.header') --}}
-                <v-app style="margin-top: 40px">
+                <v-app>
                     <my-tracking :org="{{ json_encode($org) }}" :tracking_no="{{ json_encode($tracking_no) }}" />
                 </v-app>
 
